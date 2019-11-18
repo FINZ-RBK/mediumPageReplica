@@ -1,10 +1,9 @@
 import React from "react";
 import "./App.css";
+import FeaturedArticle from "./components/FeaturedArticle";
 
 function App() {
-    return (<div className="App" >
-        Hello world!
-    </div>);
+    return <FeaturedArticle />;
 }
 
 export default App;
