@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from "react";
 import "./App.css";
 import FeaturedArticle from "./components/FeaturedArticle";
@@ -24,6 +25,17 @@ function App() {
 
     );
 
+=======
+import React from 'react';
+import './App.css';
+
+function App() {
+  return (
+    <div className="App">
+      
+    </div>
+  );
+>>>>>>> b64511a3b97e6977b55c6e5d25bcbb8ddbd2fffb
 }
 
 export default App;
