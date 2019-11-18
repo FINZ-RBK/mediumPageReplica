@@ -1,9 +1,9 @@
 const mongoose = require('../node_modules/mongoose/index.js');
-const uri = process.env.mongoURI;
 var User =  require('./models/User');
-var Article = require('./models/Article');
+var  Article = require('./models/Article');
 var Category = require('./models/Category');
 
+const uri = process.env.mongoURI || "mongodb+srv://fatoom:fatoom@cluster0-hft43.mongodb.net/mediunDB?retryWrites=true&w=majority";
 
 mongoose
   .connect(uri, {
@@ -20,16 +20,6 @@ connection.once('open', () => {
 });
 
 
-
-
-const categorySchema = mongoose.Schema({
-  id: { type: Number, unique: true },
-  name: {type: String}
-});
-
-
-const Category = mongoose.model('Category', categorySchema);
-
 const selectAll = function(obj, id, callback) {
   obj.find({ id: id }, function(err, items) {
     if (err) {
@@ -40,6 +30,12 @@ const selectAll = function(obj, id, callback) {
   });
 };
 
+const getFeatured= Article.find({}).
+                      sort(['clapsNumber', 1]).
+                      select('title subTitle pic createdAt readingTime categoryId clapsNumber authorId').
+                      exec(callback);
+
+
 const getAuthor = function(model, authorId, callback) {
   model.findOne({ id: authorId }).exec(function(err, user) {
     if (err) throw err;
@@ -47,6 +43,24 @@ const getAuthor = function(model, authorId, callback) {
   });
 };
 
+const getCategory = function(model, categoryId, callback) {
+  model.findOne({ id: categoryId }).exec(function(err, category) {
+    if (err) throw err;
+    callback(category);
+  });
+};
+
+const getLatest = Article.find({}).
+                  sort(['createdAt', 1]).
+                  select('title subTitle pic createdAt readingTime categoryId clapsNumber authorId').
+                  exec(callback);
+
 module.exports.getAuthor = getAuthor;
 module.exports.selectAll = selectAll;
+module.exports.getFeatured = getFeatured;
+module.exports.getCategory = getCategory;
 module.exports.Category = Category;
+module.exports.getLatest = getLatest;
+module.exports.Article = Article;
+module.exports.User = User;
+
