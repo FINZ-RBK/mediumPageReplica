@@ -32,8 +32,12 @@ const selectAll = function(obj, id, callback) {
 
 const getFeatured= Article.find({}).
                       sort(['clapsNumber', 1]).
-                      select('title subTitle pic createdAt readingTime categoryId clapsNumber authorId').
-                      exec(callback);
+                      select('title subTitle pic createdAt readingTime categoryId clapsNumber authorId')
+                      .exec(function (err, article) {
+                        if(err){ console.log(err)}
+                           else {callback(article)}
+                      }); 
+
 
 
 const getAuthor = function(model, authorId, callback) {
@@ -53,7 +57,10 @@ const getCategory = function(model, categoryId, callback) {
 const getLatest = Article.find({}).
                   sort(['createdAt', 1]).
                   select('title subTitle pic createdAt readingTime categoryId clapsNumber authorId').
-                  exec(callback);
+                  exec(function (err, article) {
+                    if(err){ console.log(err)}
+                       else {callback(article)}
+                  });
 
 module.exports.getAuthor = getAuthor;
 module.exports.selectAll = selectAll;
