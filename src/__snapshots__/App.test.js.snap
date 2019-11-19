@@ -1,0 +1,245 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App snapshot renders 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="row"
+  />
+  <div
+    className="row"
+  >
+    <div
+      className="col"
+    >
+      <div
+        className="container"
+      >
+        <div
+          className="row"
+        >
+          <div
+            className="col-md-4 col-sm-12 col-12 order-md-12 order-sm-0 order-0"
+          >
+            <div
+              className="row"
+            >
+              <h3>
+                Featured stories
+              </h3>
+            </div>
+            <div
+              className="row"
+            >
+              <h6>
+                Today’s best stories, picked by our editors.
+              </h6>
+            </div>
+          </div>
+          <div
+            className="col-md-8 col-sm-12 col-12 order-md-0 order-sm-12 order-12"
+          >
+            <div
+              className="row"
+            >
+              <img
+                className="img-fluid"
+                src="https://miro.medium.com/max/3000/1*bVWy9X9vq8EYjt5ysP62gg.jpeg"
+              />
+            </div>
+            <div
+              className="row"
+            >
+              <h1
+                style={
+                  Object {
+                    "fontSize": "3vw",
+                  }
+                }
+              >
+                The Healthy Way to Write About Pain
+              </h1>
+            </div>
+            <div
+              className="row"
+            >
+              <h6>
+                Ask the questions you were too busy, or scared, to consider in the moment
+              </h6>
+            </div>
+            <div
+              className="row"
+            >
+              <div
+                className="col-md-1 order-md-0"
+              >
+                <img
+                  className="rounded-circle"
+                  height="40px"
+                  src="https://miro.medium.com/fit/c/80/80/1*nllGYSR4t-ORDtSOiHJacg.jpeg"
+                  width="40px"
+                />
+              </div>
+              <div
+                className="col-md-11 order-md-11"
+              >
+                <div
+                  className="row"
+                >
+                  <p
+                    style={
+                      Object {
+                        "fontSize": "14px",
+                      }
+                    }
+                  >
+                     Eileen Pollack in Human Parts
+                  </p>
+                </div>
+                <div
+                  className="row"
+                >
+                  <p
+                    style={
+                      Object {
+                        "fontSize": "14px",
+                      }
+                    }
+                  >
+                     Nov 14 · 5 min read 
+                    <svg
+                      aria-hidden="true"
+                      className="octicon"
+                      height={16}
+                      role="img"
+                      style={
+                        Object {
+                          "display": "inline-block",
+                          "fill": "currentColor",
+                          "userSelect": "none",
+                          "verticalAlign": "middle",
+                        }
+                      }
+                      viewBox="0 0 14 16"
+                      width={14}
+                    >
+                      <path
+                        d="M14 6l-4.9-.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14 7 11.67 11.33 14l-.93-4.74L14 6z"
+                        fillRule="evenodd"
+                      />
+                    </svg>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="row"
+  >
+    <div
+      className="sc-kvZOFW kKxGbU"
+    >
+      <p>
+        latest
+      </p>
+      <div
+        className="sc-kjoXOD hSMTOQ"
+      >
+        <div
+          className="sc-cHGsZl itHmRH"
+        >
+          <div
+            className="sc-gisBJw uBDea"
+          >
+            What is Lorem Ipsum?
+          </div>
+          <div
+            className="sc-kgAjT kfwjZI"
+          >
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has
+          </div>
+          <div
+            className="sc-cJSrbW eqgxet"
+          >
+            <a
+              className="sc-fAjcbJ gtdtrb"
+            >
+              user
+               
+            </a>
+             
+            <a
+              className="sc-caSCKo esQmcm"
+            >
+              in
+            </a>
+             
+            <a
+              className="sc-caSCKo esQmcm"
+            >
+              category
+            </a>
+            <img
+              className="sc-hmzhuo glUmBV"
+              src="https://www.freepngimg.com/download/instagram/60239-like-icons-bookmark-button-computer-facebook-instagram.png"
+            />
+          </div>
+          <div
+            className="sc-cJSrbW eqgxet"
+          >
+            <div
+              className="sc-bwzfXH sc-bxivhb fdEfOo"
+              display="flex"
+            >
+              <a
+                className="sc-fAjcbJ gtdtrb"
+                style={
+                  Object {
+                    "color": "#8f8c83",
+                  }
+                }
+              >
+                 Date 
+              </a>
+               
+               . 
+              <a
+                className="sc-caSCKo esQmcm"
+                style={
+                  Object {
+                    "color": "#8f8c83",
+                  }
+                }
+              >
+                 Times 
+              </a>
+            </div>
+          </div>
+        </div>
+        <div
+          className="sc-TOsTZ frjKZD"
+        >
+          <div
+            className="sc-ksYbfQ bgwelu"
+          >
+            <img
+              alt=""
+              className="sc-gzVnrw iFwuYI"
+              height={140}
+              size={140}
+              src="https://avatars.githubusercontent.com/primer"
+              width={140}
+            />
+          </div>
+        </div>
+      </div>
+       
+    </div>
+  </div>
+</div>
+`;
