@@ -3,17 +3,9 @@ import styled from "styled-components";
 import axios from "axios";
 
 import {
-  AvatarPair,
   Avatar,
-  Flex,
-  Box,
-  Button,
-  Heading,
-  Text,
-  Link,
-  Tooltip
+  Flex
 } from "@primer/components";
-import { textAlign } from "styled-system";
 
 const A = styled.a`
   font-size: 1em;
@@ -113,12 +105,7 @@ vertical-align: text-bottom;
   height:5%
   width:5%;`;
 
-const MainImage = styled.img`
-vertical-align: text-bottom;
-  margin: 0.5em;
-  padding: 0.25em 1em;
-  height:120px
-  width:120px;`;
+
 
 class Topic extends React.Component {
   constructor(props) {
@@ -135,36 +122,36 @@ class Topic extends React.Component {
   componentDidMount() {
     var that = this;
     axios
-      .get("http://localhost:3004/getUser", {
+      .get("/articles/getUser", {
         params: {
           id: this.props.data["authorId"]
         }
       })
-      .then(function(response) {
+      .then(function (response) {
         console.log(response.data);
         that.setState({
           autherID: response.data
         });
         console.log(that.state.autherID, "data");
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
       });
 
     axios
-      .get("http://localhost:3004/getCategory", {
+      .get("/articles/getCategory", {
         params: {
           id: this.props.data["categoryId"]
         }
       })
-      .then(function(response) {
+      .then(function (response) {
         console.log(response.data);
         that.setState({
           autherID: response.data
         });
         console.log(that.state.autherID, "data");
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
       });
 

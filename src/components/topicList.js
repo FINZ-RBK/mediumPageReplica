@@ -2,18 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Topic from "./topic";
 import axios from "axios";
-const Div = styled.div`
-  font-size: 0.8em;
-  margin: 0.5em;
-  width:100%;
-  padding: 0.25em 1em;
-   display: inline
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: pre-line;
-  font-family: Scheherazade, Arial, Helvetica, sans-serif;
-  word-wrap: break-word;
-`;
+
 const UL = styled.ul`
   list-style-type: none;
 `;
@@ -53,12 +42,12 @@ class TopicList extends React.Component {
       this.state.lastItemID = 1;
     }
     axios
-      .get("http://localhost:3004/get10Articals", {
+      .get("/articles/get10Articals", {
         params: {
-          id: that.state.lastItemID
+          id: that.state.lastItemID || 0
         }
       })
-      .then(function(response) {
+      .then(function (response) {
         // console.log(response.data);
         that.setState({
           data: [...that.state.data, ...response.data],
@@ -66,7 +55,7 @@ class TopicList extends React.Component {
         });
         // console.log(that.state.lastItemID, "LastItem");
       })
-      .catch(function(error) {
+      .catch(function (error) {
         // console.log(error);
       });
   }
