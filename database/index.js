@@ -39,7 +39,6 @@ const getUsers = function (callback) {
 };
 
 const getFeatured = function (callback) {
-  console.log('hello from getFeatrued');
   Article.find({ clapsNumber: { $gte: 100 } })
     .limit(1)
     .select('title subTitle pic createdAt readingTime categoryId clapsNumber authorId')
