@@ -33,27 +33,29 @@ class TopicList extends React.Component {
 
   handelScroll(e) {
     const lastElement = document.querySelector("ul >li:last-child");
-    const lastChildOffset = lastElement.offsetTop - 20;
+    const lastChildOffset = lastElement.offsetTop - 10;
     const pageOffset = window.pageYOffset;
     const innPageOffSet = window.innerHeight;
     const allPageOffSet = pageOffset + innPageOffSet;
-    console.log(this.state.lastItemID);
+    console.log(this.state.lastItemID, "this is after update");
     if (lastChildOffset < allPageOffSet) {
-      this.state.page += 1;
+      this.setState({
+        page: this.state.page + 1
+      });
       this.getArticals();
-      console.log(this.state.lastItemID);
+      console.log(this.state.page, "this is after update");
     }
   }
   getArticals() {
     var that = this;
     var id = this.state.lastItemID;
-    if (this.state.page <= 1) {
-      id = 1;
+    if (this.state.page == 1) {
+      this.state.lastItemID = 1;
     }
     axios
       .get("http://localhost:3004/get10Articals", {
         params: {
-          id: 1
+          id: that.state.lastItemID
         }
       })
       .then(function(response) {

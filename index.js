@@ -59,7 +59,7 @@ app.get("/get10Articals", (req, res) => {
   dbArticle
     .find({ id: { $gte: req.query.id } })
     .sort({ id: 1 })
-    .limit(5)
+    .limit(3)
     .then(data => {
       // console.log(data);
       res.send(data);

@@ -1,0 +1,325 @@
+body {
+	margin: 0;
+}
+.RecComp {
+	/*background-color: rgba(0, 0, 0, 0.9);*/
+	/* background: lightskyblue;*/
+	background-color: rgba(0, 0, 0, 0.02);
+}
+.RecAall {
+	/* background-color: rgba(192, 209, 241, 0.9);*/
+	padding: 60px 0;
+	display: block;
+	width: 900px;
+	margin: 0 auto;
+}
+.RECall {
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	/* border: 1px solid;*/
+	/* min-width: 900px;*/
+	width: 900px;
+}
+.RECindex {
+	min-width: 710px;
+	display: flex;
+	justify-content: center;
+	/* margin-bottom: 30px;*/
+	padding: 30px 0px;
+}
+.RECfont1 {
+	font-family: medium-content-sans-serif-font, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Arial, sans-serif;
+	line-height: 0px;
+	font-size: 10px;
+	color: rgba(0, 0, 0, 0.54);
+	font-weight: 300;
+}
+.RECflex {
+	display: flex;
+	align-items: center;
+}
+.REConeComp {
+	/* padding: 10px;*/
+	/* border: 0.5px solid black;*/
+	/* max-width: 33.3333%;*/
+	width: 30%;
+	/* background-color: #f1f1f1;*/
+	margin-right: 25px;
+}
+.REConeComp h3{
+	height: 60px;
+}
+.RECtitle {
+	font-size: 17px;
+	margin: 10px 0;
+	letter-spacing: 0em;
+	line-height: 32px;
+	/* font-size: 20px;*/
+	font-weight: 500;
+	font-family: medium-content-title-font, Georgia, Cambria, "Times New Roman", Times, serif;
+	color: rgba(0, 0, 0, 0.84);
+	font-style: normal;
+	fill: rgba(0, 0, 0, 0.84);
+}
+.RECsecondPart {
+	justify-content: space-between;
+	height: 40px;
+}
+.RECauthor img {
+	margin-right: 5px;
+	display: block;
+	border-radius: 50%;
+	/* background: lightblue; */
+}
+.RECautorInfo {
+	justify-content: center;
+}
+.RECname a {
+	font-size: 12px;
+	font-family: medium-content-sans-serif-font, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Arial, sans-serif;
+	font-weight: 500;
+}
+.RECa {
+	text-decoration: none;
+	color: inherit;
+	font-family: medium-content-sans-serif-font, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Arial, sans-serif;
+	line-height: 0px;
+	font-weight: 200;
+	font-size: 9.5px;
+}
+.RECdateAndMin {
+	display: block;
+	font-size: 10px;
+	line-height: 10px;
+}
+.RECimg1 {
+	position: relative;
+	/* padding-bottom: 66.4634%;*/
+	height: 180px;
+}
+.RECimg2 {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+.RECrealImg {
+	height: 180px;
+	background-size: cover;
+	background-position: 50% 50%;
+	/* background: lightblue; */
+}
+.RECrealImg img{
+	width: 100%;
+	height: 100%;
+}
+.RECdownPart {
+	padding: 3px;
+}
+.RECmore {
+	padding-bottom: 8px;
+	/* margin-bottom: 32px;*/
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	font-family: medium-content-sans-serif-font, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Arial, sans-serif;
+	font-size: 16px;
+	font-weight: 600;
+	max-width: 1030px;
+	width: 875px;
+	color: rgba(0, 0, 0, 0.84);
+}
+.RECflex-container {
+	flex-wrap: nowrap;
+}
+.RECflex-container > div {
+	width: 90%;
+	height: 20px;
+	justify-content: center;
+	display: flex;
+	align-items: center;
+}
+.RECclapDiv1 {
+	margin-right: 5px;
+	position: relative;
+	display: block;
+}
+.RECclapDiv2 {
+	fill: rgba(0, 0, 0, 0.76);
+	cursor: pointer;
+	user-select: none;
+	border: 0;
+	outline: 0;
+	padding: 0;
+}
+.RECclapNum1 {
+	margin-top: 5px;
+	display: block;
+}
+.RECclapNum2 {
+	color: rgba(0, 0, 0, 0.54);
+	font-weight: 300;
+	font-size: 10px;
+	line-height: 20px;
+	margin: 0px;
+	font-family: medium-content-sans-serif-font, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Arial, sans-serif;
+}
+.RECemptyDiv {
+	width: 1px;
+	height: 20px;
+	border-right: 1px solid rgba(0, 0, 0, 0.1);
+	margin-right: 10px;
+	margin-left: 12px;
+	display: block;
+}
+.RECbookMark {
+	display: inline-block;
+}
+.FotComp {
+	background-color: rgba(0, 0, 0, 0.9);
+	/* background: black;*/
+}
+.FotAll {
+	/* background-color: rgba(0, 0, 0, 0.9);*/
+	padding: 40px 0;
+	display: block;
+	width: 900px;
+	margin: 0 auto;
+}
+.FotSection {
+	max-width: 1320px;
+	max-width: 1080px;
+	margin-right: auto;
+	margin-left: auto;
+	box-sizing: border-box;
+	width: 100%;
+	display: block;
+	font-weight: 400;
+	font-family: medium-content-sans-serif-font, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+.FotTop {
+	border-bottom: 1px solid rgba(255, 255, 255, 0.54);
+	padding-bottom: 25px;
+	margin-bottom: 25px;
+	justify-content: space-between;
+	display: flex;
+	font-weight: 400;
+	font-family: medium-content-sans-serif-font, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+.Fot3Divs {
+	margin: 0 -12px;
+	justify-content: space-between;
+	display: flex;
+}
+.FotOneDiv {
+	flex: 1 1 0;
+	margin: 0 12px;
+	display: block;
+	font-weight: 400;
+	font-family: medium-content-sans-serif-font, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+.FotTitle1 {
+	padding-bottom: 12px;
+	display: block;
+}
+.FotText {
+	fill: rgba(255, 255, 255, 0.7);
+	color: rgba(255, 255, 255, 0.7);
+	letter-spacing: 0px;
+	font-size: 10px;
+	line-height: 20px;
+	font-style: normal;
+	font-family: medium-content-sans-serif-font, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Arial, sans-serif;
+}
+.FotTitLink {
+	margin: 0;
+	padding: 0;
+	font-weight: inherit;
+	letter-spacing: inherit;
+	font-family: inherit;
+	border: inherit;
+	font-size: inherit;
+	fill: inherit;
+	color: inherit;
+}
+.FotTitle2 {
+	letter-spacing: -0.32px;
+	font-size: 14px;
+	text-align: inherit;
+	fill: rgba(255, 255, 255, 0.98);
+	color: rgba(255, 255, 255, 0.98);
+	line-height: 24px;
+	font-weight: 600;
+	font-style: normal;
+	margin: 0;
+	font-family: medium-content-sans-serif-font, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Arial, sans-serif;
+}
+.FotTextLink {
+	text-decoration: underline;
+	margin: 0;
+	padding: 0;
+	font-weight: inherit;
+	letter-spacing: inherit;
+	font-family: inherit;
+	border: inherit;
+	font-size: inherit;
+	fill: inherit;
+	color: inherit;
+	line-height: 20px;
+	font-style: normal;
+}
+.FotDown {
+	justify-content: space-between;
+	align-items: center;
+	display: flex;
+}
+.FotMLink {
+	margin: 0;
+	padding: 0;
+	font-weight: inherit;
+	letter-spacing: inherit;
+	font-family: inherit;
+	border: inherit;
+	font-size: inherit;
+	fill: inherit;
+	color: inherit;
+}
+.FotSvg {
+	fill: rgba(255, 255, 255, 0.98);
+	vertical-align: middle;
+}
+.FotLinksBar1 {
+	fill: rgba(255, 255, 255, 0.7);
+	color: rgba(255, 255, 255, 0.7);
+	letter-spacing: 0px;
+	font-size: 10px;
+	line-height: 20px;
+	font-style: normal;
+	font-family: medium-content-sans-serif-font, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Arial, sans-serif;
+	display: block;
+	font-weight: 400;
+}
+.FotLinksBar2 {
+	width: 200px;
+	/* padding-top: 8px;*/
+	justify-content: space-between;
+	display: flex;
+	fill: rgba(255, 255, 255, 0.7);
+	color: rgba(255, 255, 255, 0.7);
+	letter-spacing: 0px;
+	font-size: 10px;
+	line-height: 20px;
+	font-style: normal;
+	font-family: medium-content-sans-serif-font, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Arial, sans-serif;
+	font-weight: 400;
+}
+.FotLinkBar {
+	margin: 0;
+	padding: 0;
+	font-weight: inherit;
+	letter-spacing: inherit;
+	font-family: inherit;
+	border: inherit;
+	font-size: inherit;
+	fill: inherit;
+	color: inherit;
+	text-decoration: none;
+}
