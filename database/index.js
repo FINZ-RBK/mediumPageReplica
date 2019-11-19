@@ -1,7 +1,7 @@
 const mongoose = require("../node_modules/mongoose/index.js");
-var User = require("./models/User");
+var User = require("./models/User").User;
 var Article = require("./models/Article").Article;
-var Category = require("./models/Category");
+var Category = require("./models/Category").Category;
 
 const uri =
   process.env.mongoURI ||
@@ -56,11 +56,13 @@ const getLatest = Article.find({}).select(
   "title subTitle pic createdAt readingTime categoryId clapsNumber authorId"
 );
 
+// Article.find({'_id': {'$gt': record_id } }).sort({'_id': 1}).limit(n)
+
 // module.exports.getAuthor = getAuthor;
 // module.exports.selectAll = selectAll;
 // module.exports.getFeatured = getFeatured;
 // module.exports.getCategory = getCategory;
-// module.exports.Category = Category;
+module.exports.Category = Category;
 module.exports.getLatest = getLatest;
-// module.exports.Article = Article;
-// module.exports.User = User;
+module.exports.Article = Article;
+module.exports.User = User;

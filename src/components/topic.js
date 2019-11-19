@@ -1,6 +1,6 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import styled from "styled-components";
+import axios from "axios";
 
 import {
   AvatarPair,
@@ -123,21 +123,65 @@ vertical-align: text-bottom;
 class Topic extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      data: this.props.data,
+      lastItemID: 0,
+      autherID: 0,
+      categoryId: "non"
+    };
   }
 
+  componentDidMount() {
+    var that = this;
+    axios
+      .get("http://localhost:3004/getUser", {
+        params: {
+          id: this.props.data["authorId"]
+        }
+      })
+      .then(function(response) {
+        console.log(response.data);
+        that.setState({
+          autherID: response.data
+        });
+        console.log(that.state.autherID, "data");
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+
+    axios
+      .get("http://localhost:3004/getCategory", {
+        params: {
+          id: this.props.data["categoryId"]
+        }
+      })
+      .then(function(response) {
+        console.log(response.data);
+        that.setState({
+          autherID: response.data
+        });
+        console.log(that.state.autherID, "data");
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+
+    this.setState({
+      data: this.props.data
+    });
+    console.log(this.state.data);
+  }
   render() {
     return (
       <Container>
         <TopicText>
-          <DIV>What is Lorem Ipsum?</DIV>
-          <DIV2>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has
-          </DIV2>
+          <DIV>{this.state.data["title"]}</DIV>
+          <DIV2>{this.state.data["subTitle"]}</DIV2>
           <EmptyDiv>
-            <A ref>{"user"} </A> <A2>{"in"}</A2> <A2 ref>{"category"}</A2>
+            <A ref>{this.state.autherID} </A> <A2>{"in"}</A2>{" "}
+            <A2 ref>{this.state.categoryId}</A2>
             <Image
               src={
                 "https://www.freepngimg.com/download/instagram/60239-like-icons-bookmark-button-computer-facebook-instagram.png"
@@ -146,18 +190,20 @@ class Topic extends React.Component {
           </EmptyDiv>
           <EmptyDiv>
             <Flex>
-              <A style={{ color: "#8f8c83" }}> Date </A> {" . "}
-              <A2 style={{ color: "#8f8c83" }}> Times </A2>
+              <A style={{ color: "#8f8c83" }}>
+                {" "}
+                {this.state.data["createdAt"]}{" "}
+              </A>{" "}
+              {" . "}
+              <A2 style={{ color: "#8f8c83" }}>
+                {this.state.data["readingTime"]}
+              </A2>
             </Flex>
           </EmptyDiv>
         </TopicText>
         <TopicImage>
           <EmptyDiv2>
-            <Avatar
-              mb={4}
-              src="https://avatars.githubusercontent.com/primer"
-              size={140}
-            ></Avatar>
+            <Avatar mb={4} src={this.state.data["pic"]} size={140}></Avatar>
           </EmptyDiv2>
         </TopicImage>
       </Container>
