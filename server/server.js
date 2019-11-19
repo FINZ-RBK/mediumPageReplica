@@ -17,7 +17,7 @@ app.get("/articles/getFeatured", function (req, res) {
     });
 
 });
-app.get("/getUser", (req, res) => {
+app.get("/articles/getUser", (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     // req.query.id
     db.User.find({ id: req.query.id })
@@ -31,7 +31,7 @@ app.get("/getUser", (req, res) => {
         });
 });
 
-app.get("/getCategory", (req, res) => {
+app.get("/articles/getCategory", (req, res) => {
     console.log("iam in category");
     res.header("Access-Control-Allow-Origin", "*");
     console.log(req.query.id);
@@ -45,7 +45,7 @@ app.get("/getCategory", (req, res) => {
             }
         });
 });
-app.get("/get10Articals", (req, res) => {
+app.get("/articles/get10Articals", (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     console.log(req.query);
     console.log("hi");
@@ -53,7 +53,7 @@ app.get("/get10Articals", (req, res) => {
     var Category = [];
     var alldata = [];
 
-    dbArticle
+    db.Article
         .find({ id: { $gte: req.query.id } })
         .sort({ id: 1 })
         .limit(3)

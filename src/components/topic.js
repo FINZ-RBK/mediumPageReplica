@@ -105,12 +105,7 @@ vertical-align: text-bottom;
   height:5%
   width:5%;`;
 
-const MainImage = styled.img`
-vertical-align: text-bottom;
-  margin: 0.5em;
-  padding: 0.25em 1em;
-  height:120px
-  width:120px;`;
+
 
 class Topic extends React.Component {
   constructor(props) {

@@ -44,7 +44,7 @@ class TopicList extends React.Component {
     axios
       .get("/articles/get10Articals", {
         params: {
-          id: that.state.lastItemID
+          id: that.state.lastItemID || 0
         }
       })
       .then(function (response) {
