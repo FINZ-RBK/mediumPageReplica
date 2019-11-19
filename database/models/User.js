@@ -1,7 +1,6 @@
 var mongoose = require("mongoose");
 
 //GET the Schema constructor
-console.log('Hi from Hell');
 var Schema = mongoose.Schema;
 
 const userSchema = new Schema({
