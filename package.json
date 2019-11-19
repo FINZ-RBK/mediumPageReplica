@@ -3,29 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-<<<<<<< HEAD
     "faker": "^4.1.0",
-=======
     "@primer/octicons-react": "^9.2.0",
     "bootstrap": "^4.3.1",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
     "@primer/components": "^15.1.1",
     "emotion": "^10.0.23",
->>>>>>> 2118b54cbb2f615e7453cbd3c2a9beb8976f163c
     "mongoose": "^5.7.11",
     "react": "^16.12.0",
     "react-bootstrap": "^1.0.0-beta.14",
     "react-dom": "^16.12.0",
-<<<<<<< HEAD
     "react-facebook-login": "^4.1.1",
     "react-google-login": "^5.0.7",
-    "react-scripts": "3.2.0"
-=======
     "react-scripts": "3.2.0",
     "react-test-renderer": "^16.12.0",
     "styled-components": "^4.4.1"
->>>>>>> 2118b54cbb2f615e7453cbd3c2a9beb8976f163c
   },
   "scripts": {
     "start": "react-scripts start",
