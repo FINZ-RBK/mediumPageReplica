@@ -15,9 +15,8 @@ const structureArticles=  function() {
                 if(err){console.log(err)}
                 else {
                     var itemObject;
-                    for(i=0; i <=10; i++){
-                        // var item = new Article()
-                         itemObject={
+                    for(i=0; i <= 2; i++){
+                         itemObject= {
                             id: faker.random.number(),       
                             title: faker.lorem.sentence(),
                             subTitle: faker.lorem.sentences(),
@@ -51,7 +50,18 @@ const structureArticles=  function() {
                         }
                         console.log(tags);
                         itemObject.tags = tags;
-                        console.log(itemObject);
+                        var item = new Article(itemObject);
+                            console.log(item);
+                            item.save(err =>{
+                                if(err) {
+                                    console.log(err);
+                                } else{
+                                    console.log('article saved!');
+                                }
+                            });
+
+                        //console.log();
+
                     }
                     
                 }
