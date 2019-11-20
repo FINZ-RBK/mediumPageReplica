@@ -5,13 +5,13 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-    id: { type: Number, unique: true },
-    name: { type: String },
-    pic: { type: String },
-    email: { type: String },
-    bio: { type: String }
-  });
+  id: { type: Number, unique: true },
+  name: { type: String },
+  pic: { type: String },
+  email: { type: String },
+  bio: { type: String }
+});
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model("User", userSchema);
 
 module.exports.User = User;
