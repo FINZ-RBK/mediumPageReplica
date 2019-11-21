@@ -64,4 +64,9 @@ app.get("/articles/get10Articals", (req, res) => {
 
     //res.sendFile(path.resolve(__dirname, 'client', 'build', 'bundle.js'));
 });
+
+app.post("/user/login", function (req, res) {
+    console.log('rescieve post request');
+    res.send('hello');
+});
 app.listen(port, () => { console.log('connected on port' + port) });
