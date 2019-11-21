@@ -3,7 +3,7 @@ var User = require('./models/User').User;
 var Article = require('./models/Article').Article;
 var Category = require('./models/Category').Category;
 
-const uri = "mongodb+srv://fatoom:fatoom@cluster0-hft43.mongodb.net/mediunDB?retryWrites=true&w=majority";
+const uri = "mongodb+srv://<user>:<passwrod>@cluster0-hft43.mongodb.net/mediunDB?retryWrites=true&w=majority";
 
 mongoose
   .connect(uri, {
