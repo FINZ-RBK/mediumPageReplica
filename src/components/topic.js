@@ -2,10 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import axios from "axios";
 
-import {
-  Avatar,
-  Flex
-} from "@primer/components";
+import { Avatar, Flex } from "@primer/components";
 
 const A = styled.a`
   font-size: 1em;
@@ -105,8 +102,6 @@ vertical-align: text-bottom;
   height:5%
   width:5%;`;
 
-
-
 class Topic extends React.Component {
   constructor(props) {
     super(props);
@@ -115,7 +110,7 @@ class Topic extends React.Component {
       data: this.props.data,
       lastItemID: 0,
       autherID: 0,
-      categoryId: "non"
+      category: "non"
     };
   }
 
@@ -127,14 +122,12 @@ class Topic extends React.Component {
           id: this.props.data["authorId"]
         }
       })
-      .then(function (response) {
-        console.log(response.data);
+      .then(function(response) {
         that.setState({
           autherID: response.data
         });
-        console.log(that.state.autherID, "data");
       })
-      .catch(function (error) {
+      .catch(function(error) {
         console.log(error);
       });
 
@@ -144,31 +137,36 @@ class Topic extends React.Component {
           id: this.props.data["categoryId"]
         }
       })
-      .then(function (response) {
-        console.log(response.data);
+      .then(function(response) {
         that.setState({
-          autherID: response.data
+          category: response.data
         });
-        console.log(that.state.autherID, "data");
+        // console.log(that.state.autherID, "data");
       })
-      .catch(function (error) {
+      .catch(function(error) {
         console.log(error);
       });
 
     this.setState({
       data: this.props.data
     });
-    console.log(this.state.data);
   }
   render() {
     return (
       <Container>
         <TopicText>
-          <DIV>{this.state.data["title"]}</DIV>
+          <DIV>
+            <a
+              style={{ color: "#4d4b44" }}
+              href={`https://meduim-replica.herokuapp.com/?id=${this.state.data["id"]}`}
+            >
+              {this.state.data["title"]}
+            </a>
+          </DIV>
           <DIV2>{this.state.data["subTitle"]}</DIV2>
           <EmptyDiv>
             <A ref>{this.state.autherID} </A> <A2>{"in"}</A2>{" "}
-            <A2 ref>{this.state.categoryId}</A2>
+            <A2 ref>{this.state.category}</A2>
             <Image
               src={
                 "https://www.freepngimg.com/download/instagram/60239-like-icons-bookmark-button-computer-facebook-instagram.png"
@@ -177,21 +175,22 @@ class Topic extends React.Component {
           </EmptyDiv>
           <EmptyDiv>
             <Flex>
+              {}
               <A style={{ color: "#8f8c83" }}>
                 {" "}
-                {this.state.data["createdAt"]}{" "}
+                {new Date(this.state.data["createdAt"]).toDateString()}{" "}
               </A>{" "}
-              {" . "}
+              {" - "}
               <A2 style={{ color: "#8f8c83" }}>
-                {this.state.data["readingTime"]}
+                {this.state.data["readingTime"] + "  min read"}
               </A2>
             </Flex>
           </EmptyDiv>
         </TopicText>
         <TopicImage>
-          <EmptyDiv2>
+          <div>
             <Avatar mb={4} src={this.state.data["pic"]} size={140}></Avatar>
-          </EmptyDiv2>
+          </div>
         </TopicImage>
       </Container>
     );
