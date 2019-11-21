@@ -21,11 +21,16 @@ app.get("/articles/getFeatured", function(req, res) {
     if (err) {
       res.statusCode(504);
     }
+    console.log(article);
+
     res.json(article);
   });
 });
 
 app.get("/articles/getUser", (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  // req.query.id
+
   db.User.find({ id: req.query.id })
     .select("name")
     .then((name, err) => {
@@ -38,13 +43,18 @@ app.get("/articles/getUser", (req, res) => {
 });
 
 app.get("/articles/getCategory", (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+
   db.Category.find({ id: req.query.id })
     .select("name")
     .then((categ, err) => {
       if (err) {
-        // console.log(err);
+        console.log(err);
       } else {
-        //console.log(categ.name);
+        console.log(categ[0].name);
+        var data = categ[0].name;
+        res.send(data);
+        // console.log(err);
       }
     });
 });

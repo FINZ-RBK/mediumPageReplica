@@ -2,11 +2,19 @@ import React from "react";
 import styled from "styled-components";
 import Topic from "./topic";
 import axios from "axios";
+import sevis from "./services";
+import { fontWeight } from "styled-system";
 
 const UL = styled.ul`
   list-style-type: none;
 `;
-
+const Container = styled.div`
+  width: 100%;
+  text-align: left;
+  display: flex;
+  height: auto;
+  position: relative;
+`;
 class TopicList extends React.Component {
   constructor(props) {
     super(props);
@@ -22,23 +30,25 @@ class TopicList extends React.Component {
 
   handelScroll(e) {
     const lastElement = document.querySelector("ul >li:last-child");
-    const lastChildOffset = lastElement.offsetTop - 10;
+    const lastChildOffset = lastElement.offsetTop - 20;
     const pageOffset = window.pageYOffset;
     const innPageOffSet = window.innerHeight;
     const allPageOffSet = pageOffset + innPageOffSet;
-    console.log(this.state.lastItemID, "this is after update");
     if (lastChildOffset < allPageOffSet) {
+      // console.log(lastChildOffset);
+      // console.log(innPageOffSet);
+      // console.log(lastChildOffset);
       this.setState({
         page: this.state.page + 1
       });
       this.getArticals();
-      console.log(this.state.page, "this is after update");
     }
   }
   getArticals() {
+    console.log(this.state.lastItemID);
     var that = this;
     var id = this.state.lastItemID;
-    if (this.state.page == 1) {
+    if (this.state.page === 1) {
       this.state.lastItemID = 1;
     }
     axios
@@ -47,16 +57,17 @@ class TopicList extends React.Component {
           id: that.state.lastItemID || 0
         }
       })
-      .then(function (response) {
-        // console.log(response.data);
+      .then(function(response) {
+        console.log(response.data[response.data.length - 1]["id"], "befor");
+        that.lastItemID = response.data[response.data.length - 1]["id"];
         that.setState({
           data: [...that.state.data, ...response.data],
           lastItemID: response.data[response.data.length - 1]["id"]
         });
-        // console.log(that.state.lastItemID, "LastItem");
+        console.log(response.data[response.data.length - 1]["id"], "after");
       })
-      .catch(function (error) {
-        // console.log(error);
+      .catch(function(error) {
+        console.log(error);
       });
   }
   componentDidMount() {
@@ -76,13 +87,14 @@ class TopicList extends React.Component {
       );
     });
     return (
-      <di>
-        <p>latest</p>
+      <Container>
         <UL class="latest">
-          {listItems}
           <li></li>
+          <Container style={{ fontWeight: "bold" }}>latest</Container>
+          <hr />
+          {listItems}
         </UL>
-      </di>
+      </Container>
     );
   }
 }
