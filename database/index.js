@@ -1,7 +1,7 @@
-const mongoose = require('../node_modules/mongoose/index.js');
-var User = require('./models/User').User;
-var Article = require('./models/Article').Article;
-var Category = require('./models/Category').Category;
+const mongoose = require("../node_modules/mongoose/index.js");
+var User = require("./models/User").User;
+var Article = require("./models/Article").Article;
+var Category = require("./models/Category").Category;
 
 const uri = "mongodb+srv://fatoom:fatoom@cluster0-hft43.mongodb.net/mediunDB?retryWrites=true&w=majority";
 
@@ -9,14 +9,14 @@ mongoose
   .connect(uri, {
     useNewUrlParser: true,
     useCreateIndex: true,
-    dbName: 'mediunDB'
+    dbName: "mediunDB"
   })
-  .catch((error) => console.log('this is error!', error));
+  .catch(error => console.log("this is error!", error));
 
 const { connection } = mongoose;
 
-connection.once('open', () => {
-  console.log('MongoDB database connection established successfully');
+connection.once("open", () => {
+  console.log("MongoDB database connection established successfully");
 });
 
 //need to be refactored
@@ -31,36 +31,38 @@ const selectAll = function (obj, id, callback) {
 };
 
 const getUsers = function (callback) {
-  User.find({}).
-    exec(function (err, user) {
-      if (err) { console.log(err) }
-      else { callback(user) }
-    })
+  User.find({}).exec(function (err, user) {
+    if (err) {
+      console.log(err);
+    } else {
+      callback(user);
+    }
+  });
 };
 
 const getFeatured = function (callback) {
   Article.find({ clapsNumber: { $gte: 100 } })
     .limit(1)
-    .select('title subTitle pic createdAt readingTime categoryId clapsNumber authorId')
+    .select(
+      "title subTitle pic createdAt readingTime categoryId clapsNumber authorId"
+    )
     .exec(function (err, article) {
       if (err) {
-        callback(err, null)
+        callback(err, null);
       } else {
         var articleAuthor;
         getAuthor(User, article[0].authorId, function (err, author) {
           if (err) {
             console.log(err);
           } else {
-            var feauredArticle = { 'article': article[0], "articleAuthor": author }
-            console.log(feauredArticle);
-            callback(null, feauredArticle)
+            var feauredArticle = { article: article[0], articleAuthor: author };
+            // console.log(feauredArticle);
+            callback(null, feauredArticle);
           }
         });
-
       }
     });
-
-}
+};
 
 const getAuthor = function (model, authorId, callback) {
   model.findOne({ id: authorId }).exec(function (err, user) {
@@ -77,15 +79,55 @@ const getCategory = function (model, categoryId, callback) {
 };
 
 const getLatest = function (callback) {
-  Article.find({}).
-    sort(['createdAt', 1]).
-    select('title subTitle pic createdAt readingTime categoryId clapsNumber authorId').
-    exec(function (err, article) {
-      if (err) { console.log(err) }
-      else { callback(article) }
+  Article.find({})
+    .sort(["createdAt", 1])
+    .select(
+      "title subTitle pic createdAt readingTime categoryId clapsNumber authorId"
+    )
+    .exec(function (err, article) {
+      if (err) {
+        console.log(err);
+      } else {
+        callback(article);
+      }
     });
-}
+};
+var signUp = function (user, callback) {
+  var userModel = new User({
+    id: new Date().getTime(),
+    name: user.name,
+    password: user.password,
+    email: user.email,
+    pic:
+      "https://cdn5.vectorstock.com/i/1000x1000/85/94/person-gray-photo-placeholder-man-silhouette-sign-vector-23838594.jpg"
+  });
+  User.findOne({ email: user.email }, (err, user) => {
+    if (user) {
+      callback("Exisistt");
+      return;
+    } else
+      userModel.save(err => {
+        if (err) {
+          console.log(err);
+          callback(err);
+        }
+        callback(null, user);
+      });
+  });
+};
 
+var getUser = function (user, callback) {
+  User.findOne({ email: user.email }).exec((err, data) => {
+    if (err) {
+      console.log(err);
+      callback(err);
+    } else {
+      // console.log(data);
+
+      callback(null, data);
+    }
+  });
+};
 
 module.exports.getAuthor = getAuthor;
 module.exports.selectAll = selectAll;
@@ -96,3 +138,5 @@ module.exports.Category = Category;
 module.exports.getLatest = getLatest;
 module.exports.Article = Article;
 module.exports.User = User;
+module.exports.signUp = signUp;
+module.exports.getUser = getUser;
