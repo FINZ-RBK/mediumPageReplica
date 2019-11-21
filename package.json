@@ -23,12 +23,13 @@
     "react-scripts": "3.2.0",
     "react-test-renderer": "^16.12.0",
     "request": "^2.88.0",
-    "styled-components": "^4.4.1"
+    "styled-components": "^4.4.1",
+    "supertest": "^4.0.2"
   },
   "scripts": {
     "start": "concurrently \"npm run server\" \"react-scripts start\"",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --env=node",
     "eject": "react-scripts eject",
     "server": "nodemon server/server.js"
   },
@@ -50,6 +51,5 @@
   "devDependencies": {
     "concurrently": "^5.0.0",
     "nodemon": "^1.19.4"
-  },
-  "proxy": "http://localhost:3004"
+  }
 }

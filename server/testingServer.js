@@ -68,4 +68,4 @@ app.post("/user/login", function (req, res) {
     console.log('rescieve post request');
     res.send('hello');
 });
-app.listen(port, () => { console.log('connected on port' + port) });
+module.exports = app;
