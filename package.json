@@ -3,23 +3,33 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.6.1",
+    "@material-ui/icons": "^4.5.1",
     "@primer/components": "^15.1.1",
     "@primer/octicons-react": "^9.2.0",
+    "@testing-library/react": "^9.3.2",
     "axios": "^0.19.0",
+    "bcrypt": "^3.0.7",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.3.1",
+    "chai": "^4.2.0",
+    "cookie-parser": "^1.4.4",
+    "dotenv": "^8.2.0",
     "emotion": "^10.0.23",
-    "enzyme": "^3.10.0",
-    "enzyme-adapter-react-16": "^1.15.1",
     "express": "^4.17.1",
+    "express-validator": "^6.2.0",
     "http-proxy-middleware": "^0.20.0",
+    "jest": "^24.9.0",
     "jquery": "^3.4.1",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.7.11",
     "nodemon": "^1.19.4",
+    "python": "0.0.4",
     "react": "^16.12.0",
     "react-bootstrap": "^1.0.0-beta.14",
     "react-dom": "^16.12.0",
-    "react-facebook-login": "^4.1.1",
+    "react-loading-bar": "0.0.7",
+    "react-modal": "^3.11.1",
     "react-scripts": "3.2.0",
     "react-test-renderer": "^16.12.0",
     "request": "^2.88.0",
@@ -28,7 +38,7 @@
   "scripts": {
     "start": "concurrently \"npm run server\" \"react-scripts start\"",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest",
     "eject": "react-scripts eject",
     "server": "nodemon server/server.js"
   },
@@ -49,6 +59,9 @@
   },
   "devDependencies": {
     "concurrently": "^5.0.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
     "nodemon": "^1.19.4"
-  }
+  },
+  "proxy": "http://localhost:3004"
 }
