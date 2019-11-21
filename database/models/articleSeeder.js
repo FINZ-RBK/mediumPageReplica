@@ -15,7 +15,7 @@ const structureArticles=  function() {
                 if(err){console.log(err)}
                 else {
                     var itemObject;
-                    for(i=0; i <= 2; i++){
+                    for(i=0; i <= 4; i++){
                          itemObject= {
                             id: faker.random.number(),       
                             title: faker.lorem.sentence(),
