@@ -37,7 +37,7 @@
     "supertest": "^4.0.2"
   },
   "scripts": {
-    "start": "concurrently \"npm run server\" \"react-scripts start\"",
+    "start": "concurrently \"cd server npm run server\" \"react-scripts start\"",
     "build": "react-scripts build",
     "test": "react-scripts test --env=node",
     "eject": "react-scripts eject",
