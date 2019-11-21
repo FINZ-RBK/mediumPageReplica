@@ -17,14 +17,11 @@ class Form extends React.Component {
     this.handleClickSignIn = this.handleClickSignIn.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.signinSubmit = this.signinSubmit.bind(this);
-    // this.sign = this.sign.bind(this);
   }
 
   handleChange(event) {
     var name = event.target.name;
     this.user[name] = event.target.value;
-
-    // console.log(this.user);
   }
 
   handleClickSignIn() {
@@ -32,7 +29,6 @@ class Form extends React.Component {
     this.setState({
       signIn: state
     });
-    // console.log(this.state.signIn);
   }
 
   handleClickSignUp() {
@@ -47,7 +43,7 @@ class Form extends React.Component {
         }
       })
       .then(res => {
-        console.log("response: ", res.data);
+        console.log("response: ", res);
         that.setState({ show: false });
         that.props.handleClose();
         return res;
@@ -72,14 +68,26 @@ class Form extends React.Component {
       .then(res => {
         console.log("response: ", res);
         that.setState({ show: false });
-        that.props.handleClose();
-        return res;
+        console.log(res.data.errors);
+        this.handleResponse(res);
+        // return res;
       })
       .catch(err => {
         console.log(err);
         that.setState({ show: false });
-        this.setState({ error: err });
+        // this.setState({ error: err });
       });
+  }
+
+  handleResponse(response) {
+    if (response.status === 203) {
+      this.setState({ error: response.data.errors[0].msg });
+    } else if (response.status === 201) {
+      //that.props.handleClose();
+      this.setState({ error: response.data.errors[0] });
+    } else if (response.status === 200) {
+      console.log("Success");
+    }
   }
 
   render() {
@@ -96,7 +104,9 @@ class Form extends React.Component {
           width={this.state.show ? "70px" : "0px"}
           color="rgba(3, 168, 124, 1)"
         ></ReactLoading>
-        <p id="error" className="error" value={this.state.error}></p>
+        <p id="error" className="error">
+          {this.state.error}
+        </p>
       </div>
     );
     return this.state.signIn ? (

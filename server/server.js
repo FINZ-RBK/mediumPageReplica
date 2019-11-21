@@ -73,7 +73,7 @@ app.post(
     res.cookie("x-access-token", accessToken);
 
     if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
+      return res.status(203).json({ errors: errors.array() });
     }
     try {
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
@@ -86,15 +86,15 @@ app.post(
         // try {
         if (err) {
           // throw err;
-          return res.status(500).send(err);
+          return res.status(201).send({ errors: err });
         }
         // } catch {}
 
-        return res.status(201).send("sucess :" + accessToken);
+        return res.status(200).send("sucess :" + accessToken);
         // res.send("success");
       });
     } catch {
-      return res.status(500).send("error");
+      return res.status(201).send({ errors: ["check your password please!"] });
     }
   }
 );
@@ -107,23 +107,25 @@ app.post(
 
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
+      return res.status(203).json({ errors: errors.array() });
     }
     var accessToken = generateAccessToken(req.body);
     res.cookie("x-access-token", accessToken);
     db.getUser(req.body, async (err, user) => {
       if (err) {
-        return res.status(400).send(err);
+        return res.status(201).send({ errors: ["not found"] });
       }
       try {
         // console.log(user.password);
         if (await bcrypt.compare(req.body.password, user.password)) {
           return res.status(200).send(user);
         } else {
-          return res.status(403).send("check your password please!");
+          return res
+            .status(201)
+            .send({ errors: ["check your password please!"] });
         }
       } catch {
-        res.status(500).send("Error in Auth");
+        res.status(201).send({ errors: ["Error in Auth"] });
       }
     });
   }
