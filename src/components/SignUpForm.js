@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Loading from "react-loading-bar";
+import ReactLoading from "react-loading";
+import { stat } from "fs";
+import { textAlign } from "styled-system";
 
 class Form extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       signIn: true,
-      show: true,
+      show: false,
       error: ""
     };
     this.user = { name: "", email: "", password: "" };
@@ -34,16 +36,33 @@ class Form extends React.Component {
   }
 
   handleClickSignUp() {
+    var that = this;
+    this.setState({
+      show: true
+    });
     axios
-      .post("/users/signup")
-      .then(res => {
-        const persons = res.data;
-        this.setState({ persons });
+      .post("/users/signup", this.user, {
+        headers: {
+          "Content-Type": "application/json"
+        }
       })
-      .catch(err => {});
+      .then(res => {
+        console.log("response: ", res.data);
+        that.setState({ show: false });
+        that.props.handleClose();
+        return res;
+      })
+      .catch(err => {
+        console.log(err);
+        that.setState({ show: false });
+        this.setState({ error: err });
+      });
   }
   signinSubmit() {
-    console.log("login");
+    var that = this;
+    this.setState({
+      show: true
+    });
     axios
       .post("/users/login", this.user, {
         headers: {
@@ -51,16 +70,35 @@ class Form extends React.Component {
         }
       })
       .then(res => {
-        console.log("response: ", res.data);
+        console.log("response: ", res);
+        that.setState({ show: false });
+        that.props.handleClose();
         return res;
       })
       .catch(err => {
         console.log(err);
+        that.setState({ show: false });
         this.setState({ error: err });
       });
   }
 
   render() {
+    var loadingErr = (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center"
+        }}
+      >
+        <ReactLoading
+          type="spin"
+          width={this.state.show ? "70px" : "0px"}
+          color="rgba(3, 168, 124, 1)"
+        ></ReactLoading>
+        <p id="error" className="error" value={this.state.error}></p>
+      </div>
+    );
     return this.state.signIn ? (
       <div>
         <h4
@@ -74,8 +112,7 @@ class Form extends React.Component {
         >
           Join Meduim.
         </h4>
-        <Loading show={this.state.show} color="red"></Loading>
-        <p id="error" className="error" value={this.state.error}></p>
+        {loadingErr}
         <input
           onChange={this.handleChange}
           required
@@ -152,6 +189,7 @@ class Form extends React.Component {
           recommendations, follow authors and topics you <br /> love, and
           interact with stories.
         </p>
+        {loadingErr}
         <input
           onChange={this.handleChange}
           required
