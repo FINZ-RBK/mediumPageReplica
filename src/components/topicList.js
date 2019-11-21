@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Topic from "./topic";
 import axios from "axios";
+import sevis from "./services";
 import { fontWeight } from "styled-system";
 
 const UL = styled.ul`
@@ -29,11 +30,14 @@ class TopicList extends React.Component {
 
   handelScroll(e) {
     const lastElement = document.querySelector("ul >li:last-child");
-    const lastChildOffset = lastElement.offsetTop - 10;
+    const lastChildOffset = lastElement.offsetTop - 20;
     const pageOffset = window.pageYOffset;
     const innPageOffSet = window.innerHeight;
     const allPageOffSet = pageOffset + innPageOffSet;
     if (lastChildOffset < allPageOffSet) {
+      // console.log(lastChildOffset);
+      // console.log(innPageOffSet);
+      // console.log(lastChildOffset);
       this.setState({
         page: this.state.page + 1
       });
@@ -41,9 +45,10 @@ class TopicList extends React.Component {
     }
   }
   getArticals() {
+    console.log(this.state.lastItemID);
     var that = this;
     var id = this.state.lastItemID;
-    if (this.state.page == 1) {
+    if (this.state.page === 1) {
       this.state.lastItemID = 1;
     }
     axios
@@ -53,10 +58,13 @@ class TopicList extends React.Component {
         }
       })
       .then(function(response) {
+        console.log(response.data[response.data.length - 1]["id"], "befor");
+        that.lastItemID = response.data[response.data.length - 1]["id"];
         that.setState({
           data: [...that.state.data, ...response.data],
           lastItemID: response.data[response.data.length - 1]["id"]
         });
+        console.log(response.data[response.data.length - 1]["id"], "after");
       })
       .catch(function(error) {
         console.log(error);
@@ -81,10 +89,10 @@ class TopicList extends React.Component {
     return (
       <Container>
         <UL class="latest">
+          <li></li>
           <Container style={{ fontWeight: "bold" }}>latest</Container>
           <hr />
           {listItems}
-          <li></li>
         </UL>
       </Container>
     );
