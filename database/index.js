@@ -104,7 +104,7 @@ var signUp = function(user, callback) {
   });
   User.findOne({ email: user.email }, (err, user) => {
     if (user) {
-      callback("Exisistt");
+      callback("User is already exists");
       return;
     } else
       userModel.save(err => {
