@@ -19,9 +19,7 @@ app.use(cookieParser());
 const publicPath = path.join(__dirname, '..', 'public');
 app.use(express.static(publicPath));
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(publicPath, 'index.html'));
-});
+
 app.get("/articles/getFeatured", function (req, res) {
     db.getFeatured(function (err, article) {
         if (err) {
@@ -171,7 +169,9 @@ app.get("/user", (req, res) => {
         res.status(401).json({ msg: "Token is not valid" });
     }
 });
-
+// app.get('*', (req, res) => {
+//     res.sendFile(path.join(publicPath, 'index.html'));
+// });
 app.listen(port, () => {
     console.log("connected on port" + port);
 });

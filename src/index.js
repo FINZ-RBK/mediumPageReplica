@@ -9,7 +9,7 @@ import axios from 'axios';
 
 axios.get(`/articles/getFeatured`)
     .then(res => {
-        // console.log('data from axios', res.data)
+        console.log('data from axios', res.data)
         ReactDOM.render(<App farticle={res.data} />, document.getElementById("root"));
 
     }).catch(() => {
