@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "main": "server/server.js",
+  "homepage": "https://medium-featured-replica.herokuapp.com/",
   "dependencies": {
     "@material-ui/core": "^4.6.1",
     "@material-ui/icons": "^4.5.1",
