@@ -67,5 +67,5 @@
     "enzyme-adapter-react-16": "^1.15.1",
     "nodemon": "^1.19.4"
   },
-  "proxy": "https://medium-featured-replica.herokuapp.com:3004"
+  "proxy": "http://localhost:3004"
 }
