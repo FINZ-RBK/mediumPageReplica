@@ -45,7 +45,8 @@ class Form extends React.Component {
       .then(res => {
         console.log("response: ", res);
         that.setState({ show: false });
-        that.props.handleClose();
+        // that.props.handleClose();
+        that.handleResponse(res)
         return res;
       })
       .catch(err => {

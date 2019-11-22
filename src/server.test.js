@@ -73,6 +73,84 @@ describe("checking Users conection with database ", () => {
   });
 });
 
+// testing for signin
+
+describe("checking login", () => {
+  test("It should return an object", async done => {
+    const response = await request(app)
+      .post(`/users/login`)
+      .send({ email: "fatoomfayyad@gmail.com", password: "123456" });
+      // expect(response.statusCode).toBe(200);
+      expect(response.status).toEqual(200)
+      expect(JSON.parse(response.text).name).toEqual("fatoom")
+
+    done();
+  });
+    test("It should return an error", async done => {
+      const response = await request(app)
+      .post('/users/login')
+      .send({email: "fatoomfayyad@gmail.com", password: '123'});
+      expect(response.statusCode).toBe(203);
+      expect(JSON.parse(response.text).errors[0].param).toBe("password");
+
+      done();
+    });
+    test("It should return an error", async done => {
+      const response = await request(app)
+      .post('/users/login')
+      .send({email: "fatoddddyad@gmail.com", password: '123548484'});
+      expect(response.statusCode).toBe(201);
+      done();
+    });
+  });
+
+
+  //checking singup 
+
+
+describe("checking signup", () => {
+  test("It should return an error with exisit", async done => {
+    const response = await request(app)
+      .post(`/users/signup`)
+      .send({ email: "fatoomfayyad@gmail.com", password: "123456" });
+      expect(response.statusCode).toBe(201);
+    done();
+  });
+    test("It should return an object", async done => {
+      const response = await request(app)
+      .post('/users/signup')
+      .send({name :"FA",email: "fatoomfayyad12@gmail.com", password: '123ss4567'});
+      expect(response.status).not.toEqual(200);
+      done();
+    });
+    
+  });
+
+  // checking get user
+
+describe("checking get user", () => {
+  test("It should return an error ", async done => {
+    const response = await request(app)
+      .get(`/users/user`)
+      .set({"x-access-token": "anything" });
+      expect(response.status).toBe(401);
+    done();
+  });   
+  });
+
+  // test("it shoud return tree row for an exist id", async done => {
+  //   const response = await request(app).get(`/articles/get10Articals`);
+  //   expect(response.body.data.length).toEqual(3);
+  //   done();
+  // });
+  // test("it shoude return null for no id", async done => {
+  //   const response = await request(app).get(`/articles/getCategory/`);
+  //   expect(null).toBeDefined();
+  //   expect(response.type).toBe("application/json");
+  //   done();
+  // });
+// });
+
 // it("signup creates a new user record", function (done) {
 //     var options = {
 //         method: "POST",

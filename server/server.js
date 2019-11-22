@@ -2,20 +2,23 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 const bcryptjs = require("bcryptjs");
-// const auth = require("./middleware/auth");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 const db = require(path.join(__dirname, "../database/index.js"));
 const app = express();
 const port = process.env.PORT || 3004;
 const { check, validationResult } = require("express-validator");
-const ACCESS_TOKEN_SECRET =
-  "26e94a2ccce0c6b4691f2760e9346645a1308e3c56c77aa14bbff993c05153c4efdf258e055595550a80f834d12144f7412efa0b2f34fb4036cdc302be77468e";
-
+const config = require("../config");
+const auth = require("./auth");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use("*", (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "*");
 
+  next();
+});
 app.get("/articles/getFeatured", function(req, res) {
   db.getFeatured(function(err, article) {
     if (err) {
@@ -29,8 +32,6 @@ app.get("/articles/getFeatured", function(req, res) {
 
 app.get("/articles/getUser", (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
-  // req.query.id
-
   db.User.find({ id: req.query.id })
     .select("name")
     .then((name, err) => {
@@ -80,8 +81,8 @@ app.post(
   [check("email").isEmail(), check("password").isLength({ min: 6 })],
   async (req, res) => {
     const errors = validationResult(req);
-    const accessToken = generateAccessToken(req.body);
-    res.cookie("x-access-token", accessToken);
+    const accessToken = auth.generateAccessToken(req.body);
+    res.cookie(config, accessToken);
 
     if (!errors.isEmpty()) {
       return res.status(203).json({ errors: errors.array() });
@@ -97,11 +98,11 @@ app.post(
         // try {
         if (err) {
           // throw err;
-          return res.status(201).send({ errors: err });
+          return res.status(201).send({ errors: [err] });
         }
         // } catch {}
 
-        return res.status(200).send("sucess :" + accessToken);
+        return res.status(200).send("sucess");
         // res.send("success");
       });
     } catch {
@@ -114,14 +115,12 @@ app.post(
   "/users/login",
   [check("email").isEmail(), check("password").isLength({ min: 6 })],
   async (req, res) => {
-    // console.log(req.body);
-
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(203).json({ errors: errors.array() });
     }
-    var accessToken = generateAccessToken(req.body);
-    res.cookie("x-access-token", accessToken);
+    var accessToken = auth.generateAccessToken(req.body);
+    res.cookie(config.HEADER_AUTH, accessToken);
     db.getUser(req.body, async (err, user) => {
       if (err) {
         return res.status(201).send({ errors: ["not found"] });
@@ -142,17 +141,13 @@ app.post(
   }
 );
 
-function generateAccessToken(user) {
-  return jwt.sign(user, ACCESS_TOKEN_SECRET, {
-    expiresIn: "36000000s"
-  });
-}
+app.get("/users/user", (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
 
-app.get("/user", (req, res) => {
-  var token = req.headers["x-access-token"];
+  var token = req.headers[config.HEADER_AUTH];
   if (token == null) return res.sendStatus(401);
   try {
-    jwt.verify(token, ACCESS_TOKEN_SECRET, (err, user) => {
+    jwt.verify(token, config.ACCESS_TOKEN_SECRET, (err, user) => {
       //   console.log(err);
       if (err) return res.sendStatus(403);
       // req.user = user;
@@ -160,7 +155,7 @@ app.get("/user", (req, res) => {
         if (err) {
           return res.status(400).send(err);
         }
-        res.send(user);
+        res.status(200).send(user);
       });
     });
   } catch (err) {
