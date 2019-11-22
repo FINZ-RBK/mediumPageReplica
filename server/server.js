@@ -18,7 +18,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 // const publicPath = path.join(__dirname, '..', 'public');
 // app.use(express.static(publicPath));
-
+app.use(express.static('./node_modules'));
+app.get('/hello', (req, res) => {
+    res.send('hello');
+    //res.sendFile(path.resolve(__dirname, 'client', 'build', 'bundle.js'));
+})
 
 app.get("/articles/getFeatured", function (req, res) {
     db.getFeatured(function (err, article) {
@@ -170,6 +174,7 @@ app.get("/user", (req, res) => {
     }
 });
 if (process.env.NODE_ENV === 'production') {
+
     app.use(express.static('../build'));
     const path = require('path');
     app.get('*', (req, res) => {
