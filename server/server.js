@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
+
 const bcrypt = require("bcrypt");
 // const auth = require("./middleware/auth");
 const jwt = require("jsonwebtoken");
@@ -15,8 +16,12 @@ const ACCESS_TOKEN_SECRET =
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+const publicPath = path.join(__dirname, '..', 'public');
+app.use(express.static(publicPath));
 
-
+app.get('*', (req, res) => {
+    res.sendFile(path.join(publicPath, 'index.html'));
+});
 app.get("/articles/getFeatured", function (req, res) {
     db.getFeatured(function (err, article) {
         if (err) {
