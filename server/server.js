@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
-const bcrypt = require("bcrypt");
+const bcryptjs = require("bcryptjs");
 // const auth = require("./middleware/auth");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
@@ -21,11 +21,16 @@ app.get("/articles/getFeatured", function(req, res) {
     if (err) {
       res.statusCode(504);
     }
+    console.log(article);
+
     res.json(article);
   });
 });
 
 app.get("/articles/getUser", (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  // req.query.id
+
   db.User.find({ id: req.query.id })
     .select("name")
     .then((name, err) => {
@@ -38,13 +43,19 @@ app.get("/articles/getUser", (req, res) => {
 });
 
 app.get("/articles/getCategory", (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  console.log(res.header.toString(), "header");
+
   db.Category.find({ id: req.query.id })
     .select("name")
     .then((categ, err) => {
       if (err) {
-        // console.log(err);
+        console.log(err);
       } else {
-        //console.log(categ.name);
+        console.log(categ[0].name);
+        var data = categ[0].name;
+        res.send(data);
+        // console.log(err);
       }
     });
 });
@@ -76,7 +87,7 @@ app.post(
       return res.status(203).json({ errors: errors.array() });
     }
     try {
-      const hashedPassword = await bcrypt.hash(req.body.password, 10);
+      const hashedPassword = await bcryptjs.hash(req.body.password, 10);
       const user = {
         name: req.body.name,
         password: hashedPassword,
@@ -117,7 +128,7 @@ app.post(
       }
       try {
         // console.log(user.password);
-        if (await bcrypt.compare(req.body.password, user.password)) {
+        if (await bcryptjs.compare(req.body.password, user.password)) {
           return res.status(200).send(user);
         } else {
           return res

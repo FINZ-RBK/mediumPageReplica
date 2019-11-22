@@ -3,8 +3,7 @@ var User = require("./models/User").User;
 var Article = require("./models/Article").Article;
 var Category = require("./models/Category").Category;
 
-const uri =
-  "mongodb+srv://fatoom:fatoom@cluster0-hft43.mongodb.net/mediunDB?retryWrites=true&w=majority";
+const uri = "mongodb+srv://fatoom:fatoom@cluster0-hft43.mongodb.net/mediunDB?retryWrites=true&w=majority";
 
 mongoose
   .connect(uri, {
@@ -21,8 +20,8 @@ connection.once("open", () => {
 });
 
 //need to be refactored
-const selectAll = function(obj, id, callback) {
-  obj.find({ id: id }, function(err, items) {
+const selectAll = function (obj, id, callback) {
+  obj.find({ id: id }, function (err, items) {
     if (err) {
       callback(err, null);
     } else {
@@ -31,8 +30,8 @@ const selectAll = function(obj, id, callback) {
   });
 };
 
-const getUsers = function(callback) {
-  User.find({}).exec(function(err, user) {
+const getUsers = function (callback) {
+  User.find({}).exec(function (err, user) {
     if (err) {
       console.log(err);
     } else {
@@ -41,18 +40,18 @@ const getUsers = function(callback) {
   });
 };
 
-const getFeatured = function(callback) {
+const getFeatured = function (callback) {
   Article.find({ clapsNumber: { $gte: 100 } })
     .limit(1)
     .select(
       "title subTitle pic createdAt readingTime categoryId clapsNumber authorId"
     )
-    .exec(function(err, article) {
+    .exec(function (err, article) {
       if (err) {
         callback(err, null);
       } else {
         var articleAuthor;
-        getAuthor(User, article[0].authorId, function(err, author) {
+        getAuthor(User, article[0].authorId, function (err, author) {
           if (err) {
             console.log(err);
           } else {
@@ -65,27 +64,27 @@ const getFeatured = function(callback) {
     });
 };
 
-const getAuthor = function(model, authorId, callback) {
-  model.findOne({ id: authorId }).exec(function(err, user) {
+const getAuthor = function (model, authorId, callback) {
+  model.findOne({ id: authorId }).exec(function (err, user) {
     if (err) callback(err, null);
     callback(null, user);
   });
 };
 
-const getCategory = function(model, categoryId, callback) {
-  model.findOne({ id: categoryId }).exec(function(err, category) {
+const getCategory = function (model, categoryId, callback) {
+  model.findOne({ id: categoryId }).exec(function (err, category) {
     if (err) throw err;
     callback(category);
   });
 };
 
-const getLatest = function(callback) {
+const getLatest = function (callback) {
   Article.find({})
     .sort(["createdAt", 1])
     .select(
       "title subTitle pic createdAt readingTime categoryId clapsNumber authorId"
     )
-    .exec(function(err, article) {
+    .exec(function (err, article) {
       if (err) {
         console.log(err);
       } else {
@@ -93,7 +92,7 @@ const getLatest = function(callback) {
       }
     });
 };
-var signUp = function(user, callback) {
+var signUp = function (user, callback) {
   var userModel = new User({
     id: new Date().getTime(),
     name: user.name,
@@ -117,7 +116,7 @@ var signUp = function(user, callback) {
   });
 };
 
-var getUser = function(user, callback) {
+var getUser = function (user, callback) {
   User.findOne({ email: user.email }).exec((err, data) => {
     if (err) {
       console.log(err);
