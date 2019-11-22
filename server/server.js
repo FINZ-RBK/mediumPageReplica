@@ -1,6 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
+const bcrypt = require("bcrypt");
+// const auth = require("./middleware/auth");
 const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
@@ -13,6 +15,14 @@ const auth = require("./auth");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+// const publicPath = path.join(__dirname, '..', 'public');
+// app.use(express.static(publicPath));
+// app.use(express.static('./../node_modules'));
+// app.get('/hello', (req, res) => {
+//     res.send('hello');
+//     //res.sendFile(path.resolve(__dirname, 'client', 'build', 'bundle.js'));
+// })
+
 app.use("*", (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "*");
@@ -163,7 +173,15 @@ app.get("/users/user", (req, res) => {
     res.status(401).json({ msg: "Token is not valid" });
   }
 });
+if (process.env.NODE_ENV === 'production') {
 
+    app.use(express.static('../build'));
+    const path = require('path');
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
+    })
+
+}
 app.listen(port, () => {
   console.log("connected on port" + port);
 });

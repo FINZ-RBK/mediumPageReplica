@@ -38,11 +38,14 @@
     "supertest": "^4.0.2"
   },
   "scripts": {
-    "start": "concurrently \"cd server npm run server\" \"react-scripts start\"",
+    "dev": "concurrently \"npm run server\" \"react-scripts start\"",
+   // "start": "concurrently \"cd server npm run server\" \"react-scripts start\"",
     "build": "react-scripts build",
     "test": "react-scripts test --env=node",
     "eject": "react-scripts eject",
-    "server": "nodemon server/server.js"
+    "start": "node server/server.js",
+    "server": "nodemon server/server.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build"
   },
   "eslintConfig": {
     "extends": "react-app"
