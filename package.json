@@ -38,12 +38,11 @@
   },
   "scripts": {
     "dev": "concurrently \"npm run server\" \"react-scripts start\"",
-    "build": "react-scripts build",
     "test": "react-scripts test --env=node",
     "eject": "react-scripts eject",
     "start": "node server/server.js",
     "server": "nodemon server/server.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install "
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && react-scripts build"
   },
   "eslintConfig": {
     "extends": "react-app"
