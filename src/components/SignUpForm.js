@@ -17,6 +17,11 @@ class Form extends React.Component {
     this.handleClickSignIn = this.handleClickSignIn.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.signinSubmit = this.signinSubmit.bind(this);
+    this.refreshPage = this.refreshPage.bind(this);
+  }
+
+  refreshPage() {
+    window.location.reload(false);
   }
 
   handleChange(event) {
@@ -46,7 +51,8 @@ class Form extends React.Component {
         console.log("response: ", res);
         that.setState({ show: false });
         // that.props.handleClose();
-        that.handleResponse(res)
+        that.handleResponse(res);
+        that.refreshPage();
         return res;
       })
       .catch(err => {
@@ -70,6 +76,7 @@ class Form extends React.Component {
         console.log("response: ", res);
         that.setState({ show: false });
         console.log(res.data.errors);
+        that.refreshPage();
         this.handleResponse(res);
         // return res;
       })

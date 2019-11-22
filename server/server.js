@@ -92,7 +92,7 @@ app.post(
   async (req, res) => {
     const errors = validationResult(req);
     const accessToken = auth.generateAccessToken(req.body);
-    res.cookie(config, accessToken);
+    res.cookie(config.HEADER_AUTH, accessToken);
 
     if (!errors.isEmpty()) {
       return res.status(203).json({ errors: errors.array() });
@@ -152,15 +152,11 @@ app.post(
 );
 
 app.get("/users/user", (req, res) => {
-  res.header("Access-Control-Allow-Origin", "*");
-
   var token = req.headers[config.HEADER_AUTH];
   if (token == null) return res.sendStatus(401);
   try {
     jwt.verify(token, config.ACCESS_TOKEN_SECRET, (err, user) => {
-      //   console.log(err);
       if (err) return res.sendStatus(403);
-      // req.user = user;
       db.getUser(user, (err, user) => {
         if (err) {
           return res.status(400).send(err);
@@ -169,7 +165,6 @@ app.get("/users/user", (req, res) => {
       });
     });
   } catch (err) {
-    // console.log(err);
     res.status(401).json({ msg: "Token is not valid" });
   }
 });
