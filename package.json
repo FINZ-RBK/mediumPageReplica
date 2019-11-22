@@ -41,8 +41,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=node",
     "eject": "react-scripts eject",
-    "start": "node server/server.js",
-    "server": "nodemon server/server.js"
+    "start": "react-scripts start",
+    "server": "node server/server.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run build && npm run server"
   },
   "eslintConfig": {
     "extends": "react-app"
