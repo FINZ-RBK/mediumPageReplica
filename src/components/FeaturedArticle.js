@@ -17,33 +17,33 @@ class FeaturedArticle extends React.Component {
             <Container >
                 <Row>
                     <Col md={{ span: 4, order: 12 }} sm={{ span: 12, order: 0 }} xs={{ span: 12, order: 0 }}>
-                        <Row>
+                        <Row style={{ marginLeft: 30 + "px" }}  >
                             <h3>Featured stories</h3>
                         </Row>
-                        <Row>
+                        <Row style={{ marginLeft: 30 + "px", color: "#999", fontSize: 12 + "px" }}>
                             <h6>Today’s best stories, picked by our editors.</h6>
                         </Row>
                     </Col>
                     <Col md={{ span: 8, order: 0 }} sm={{ span: 12, order: 12 }} xs={{ span: 12, order: 12 }}>
                         <Row>
-                            <Image src={(this.article.pic) ? this.article.pic : ""} fluid></Image>
+                            <Image src={(this.article.pic) ? this.article.pic : ""} width="100%"></Image>
                         </Row>
-                        <Row>
+                        <Row style={{ marginTop: 11 + "px" }}>
                             <h1 style={{ fontSize: 3 + "vw" }}>{(this.article.title) ? this.article.title : ""}</h1>
                         </Row>
                         <Row>
-                            <h6>{(this.article.subTitle) ? this.article.subTitle : ""}</h6>
+                            <h6 style={{ color: "#999" }}>{(this.article.subTitle) ? this.article.subTitle : ""}</h6>
                         </Row>
                         <Row>
-                            <Col md={{ span: 1, order: 0 }}>
+                            <Col md={{ span: 1, order: 0 }} style={{ padding: 0 }}>
                                 <Image src={(this.author.pic) ? this.author.pic : ""} roundedCircle height="40px" width="40px"></Image>
                             </Col>
                             <Col md={{ span: 11, order: 11 }}>
                                 <Row>
-                                    <p style={{ fontSize: 14 + "px" }}> {(this.author.name) ? this.author.name : ""} in Human Parts</p>
+                                    <p style={{ fontSize: 12 + "px", marginBottom: 0 }}> {(this.author.name) ? this.author.name : ""} in Human Parts</p>
                                 </Row>
                                 <Row>
-                                    <p style={{ fontSize: 14 + "px" }}> Nov 14 · {(this.article.readingTime) ? this.article.readingTime : ""} min read <Octicon icon={Star} size="small" verticalAlign="middle"></Octicon></p>
+                                    <p style={{ fontSize: 12 + "px" }}> Nov 14 · {(this.article.readingTime) ? this.article.readingTime : ""} min read <Octicon icon={Star} size="small" verticalAlign="middle"></Octicon></p>
                                 </Row>
                             </Col>
                         </Row>

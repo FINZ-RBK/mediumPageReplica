@@ -103,4 +103,4 @@ xdescribe('App', () => {
     //   const counterWrapper = wrapper.find(Counter);
     //   expect(counterWrapper.find('p').text()).toBe('1');
     // });
-  });
+  // });

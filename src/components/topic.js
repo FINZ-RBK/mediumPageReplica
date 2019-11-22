@@ -5,8 +5,7 @@ import axios from "axios";
 import { Avatar, Flex } from "@primer/components";
 
 const A = styled.a`
-  font-size: 1em;
-  margin: 0em 0em 0em 1.2em;
+  font-size: 0.8em;
   color: #4d4b44;
   text-align: left;
   font-family: Scheherazade, Arial, Helvetica, sans-serif;
@@ -21,7 +20,7 @@ const A = styled.a`
 `;
 
 const A2 = styled.a`
-  font-size: 1em;
+  font-size: 0.8em;
   margin: 0em;
   color: #4d4b44;
   text-align: left;
@@ -34,8 +33,6 @@ const DIV = styled.div`
 color:#4d4b44;
 font-weight: bold
   font-size: 1.5em;
-  margin: .2em .2em .2em 0.8em;
-  padding: 0.25em 0.9em;
   text-align: left;
   font-family: Scheherazade, Arial, Helvetica, sans-serif;
   word-wrap: break-word;
@@ -55,17 +52,15 @@ const Container = styled.div`
   position: relative;
 `;
 const TopicText = styled.div`
-  width: 60%;
+  width: 80%;
 `;
 
 const TopicImage = styled.div`
-  width: 40%;
+  width: 20%;
 `;
 const DIV2 = styled.div`
   font-size: 1em;
-  margin: 0.8em;
   color: #8f8c83;
-  padding: 0.25em 2em;
   text-align: left;
   font-family: Scheherazade, Arial, Helvetica, sans-serif;
   word-wrap: break-word;
@@ -80,8 +75,6 @@ const DIV2 = styled.div`
 
 const EmptyDiv = styled.div`
   width: 100%;
-  margin: 0.5em;
-  padding: 0.25em 1em;
   font-family: Scheherazade, Arial, Helvetica, sans-serif;
 `;
 const EmptyDiv2 = styled.div`
@@ -89,8 +82,6 @@ const EmptyDiv2 = styled.div`
   height: auto;
   position: relative;
   width: 30%;
-  margin: 0.5em;
-  padding: 0.25em 1em;
   font-family: Scheherazade, Arial, Helvetica, sans-serif;
 `;
 
@@ -122,12 +113,12 @@ class Topic extends React.Component {
           id: this.props.data["authorId"]
         }
       })
-      .then(function(response) {
+      .then(function (response) {
         that.setState({
           autherID: response.data
         });
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
       });
 
@@ -137,13 +128,13 @@ class Topic extends React.Component {
           id: this.props.data["categoryId"]
         }
       })
-      .then(function(response) {
+      .then(function (response) {
         that.setState({
           category: response.data
         });
         // console.log(that.state.autherID, "data");
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
       });
 
@@ -180,9 +171,9 @@ class Topic extends React.Component {
                 {" "}
                 {new Date(this.state.data["createdAt"]).toDateString()}{" "}
               </A>{" "}
-              {" - "}
+
               <A2 style={{ color: "#8f8c83" }}>
-                {this.state.data["readingTime"] + "  min read"}
+                {"  - "} {this.state.data["readingTime"] + "  min read"}
               </A2>
             </Flex>
           </EmptyDiv>

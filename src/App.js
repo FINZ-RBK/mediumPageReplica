@@ -18,7 +18,6 @@ class App extends React.Component {
   componentDidMount() {
     var that = this;
     axios.get(`/articles/getFeatured`).then(res => {
-      console.log("data from axios", res.data);
       that.setState({ article: res.data });
     });
   }
@@ -28,24 +27,43 @@ class App extends React.Component {
     }
   }
   render() {
-    console.log("changing states", this.state.article);
     return (
       <Container>
-        <AuthorizationBox></AuthorizationBox>
+        {/* <AuthorizationBox></AuthorizationBox> */}
         {/* Nav Bar */}
-        <Row></Row>
+        <Row>
+          <Col><iframe
+            allowfullscreen
+            scrolling="no"
+            seamless="seamless"
+            src={
+              "https://navbar-module.herokuapp.com/featured/"
+            }
+            width="100%"
+            height="100%"
+            frameBorder="0"
+          ></iframe></Col>
+
+        </Row>
         {/* Featured */}
         <Row>
           <Col>
-            <FeaturedArticle
-              article={this.state.article ? this.state.article : ""}
-            ></FeaturedArticle>
+            <Row>
+              <Col><FeaturedArticle
+                article={this.state.article ? this.state.article : ""}
+              ></FeaturedArticle></Col>
+
+            </Row>
+            <Row style={{ marginTop: 15 + "px" }}>
+              <Col md={8}>
+                <TopicList></TopicList>
+              </Col>
+              <Col md={4}></Col>
+            </Row>
           </Col>
         </Row>
         {/* Latest */}
-        <Row>
-          <TopicList></TopicList>
-        </Row>
+
       </Container>
     );
   }
