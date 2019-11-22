@@ -2,11 +2,12 @@ const mongoose = require("../node_modules/mongoose/index.js");
 var User = require("./models/User").User;
 var Article = require("./models/Article").Article;
 var Category = require("./models/Category").Category;
-
-const uri = "mongodb+srv://fatoom:fatoom@cluster0-hft43.mongodb.net/mediunDB?retryWrites=true&w=majority";
+const config = require ("../config")
+// var uri ="mongodb+srv://fatoom:fatoom@cluster0-lv76n.mongodb.net/mediunDB?retryWrites=true&w=majority"
 
 mongoose
-  .connect(uri, {
+  .connect(config.mongoURI, {
+      // .connect(config.mongoURI, {
     useNewUrlParser: true,
     useCreateIndex: true,
     dbName: "mediunDB"
@@ -103,7 +104,7 @@ var signUp = function (user, callback) {
   });
   User.findOne({ email: user.email }, (err, user) => {
     if (user) {
-      callback("Exisistt");
+      callback("User is already exists");
       return;
     } else
       userModel.save(err => {

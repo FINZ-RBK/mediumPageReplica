@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Loading from "react-loading-bar";
+import ReactLoading from "react-loading";
+import { stat } from "fs";
+import { textAlign } from "styled-system";
 
 class Form extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       signIn: true,
-      show: true,
+      show: false,
       error: ""
     };
     this.user = { name: "", email: "", password: "" };
@@ -15,14 +17,16 @@ class Form extends React.Component {
     this.handleClickSignIn = this.handleClickSignIn.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.signinSubmit = this.signinSubmit.bind(this);
-    // this.sign = this.sign.bind(this);
+    this.refreshPage = this.refreshPage.bind(this);
+  }
+
+  refreshPage() {
+    window.location.reload(false);
   }
 
   handleChange(event) {
     var name = event.target.name;
     this.user[name] = event.target.value;
-
-    // console.log(this.user);
   }
 
   handleClickSignIn() {
@@ -30,20 +34,38 @@ class Form extends React.Component {
     this.setState({
       signIn: state
     });
-    // console.log(this.state.signIn);
   }
 
   handleClickSignUp() {
+    var that = this;
+    this.setState({
+      show: true
+    });
     axios
-      .post("/users/signup")
-      .then(res => {
-        const persons = res.data;
-        this.setState({ persons });
+      .post("/users/signup", this.user, {
+        headers: {
+          "Content-Type": "application/json"
+        }
       })
-      .catch(err => {});
+      .then(res => {
+        console.log("response: ", res);
+        that.setState({ show: false });
+        // that.props.handleClose();
+        that.handleResponse(res);
+        that.refreshPage();
+        return res;
+      })
+      .catch(err => {
+        console.log(err);
+        that.setState({ show: false });
+        this.setState({ error: err });
+      });
   }
   signinSubmit() {
-    console.log("login");
+    var that = this;
+    this.setState({
+      show: true
+    });
     axios
       .post("/users/login", this.user, {
         headers: {
@@ -51,16 +73,50 @@ class Form extends React.Component {
         }
       })
       .then(res => {
-        console.log("response: ", res.data);
-        return res;
+        console.log("response: ", res);
+        that.setState({ show: false });
+        console.log(res.data.errors);
+        that.refreshPage();
+        this.handleResponse(res);
+        // return res;
       })
       .catch(err => {
         console.log(err);
-        this.setState({ error: err });
+        that.setState({ show: false });
+        // this.setState({ error: err });
       });
   }
 
+  handleResponse(response) {
+    if (response.status === 203) {
+      this.setState({ error: response.data.errors[0].msg });
+    } else if (response.status === 201) {
+      //that.props.handleClose();
+      this.setState({ error: response.data.errors[0] });
+    } else if (response.status === 200) {
+      console.log("Success");
+    }
+  }
+
   render() {
+    var loadingErr = (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center"
+        }}
+      >
+        <ReactLoading
+          type="spin"
+          width={this.state.show ? "70px" : "0px"}
+          color="rgba(3, 168, 124, 1)"
+        ></ReactLoading>
+        <p id="error" className="error">
+          {this.state.error}
+        </p>
+      </div>
+    );
     return this.state.signIn ? (
       <div>
         <h4
@@ -74,8 +130,7 @@ class Form extends React.Component {
         >
           Join Meduim.
         </h4>
-        <Loading show={this.state.show} color="red"></Loading>
-        <p id="error" className="error" value={this.state.error}></p>
+        {loadingErr}
         <input
           onChange={this.handleChange}
           required
@@ -152,6 +207,7 @@ class Form extends React.Component {
           recommendations, follow authors and topics you <br /> love, and
           interact with stories.
         </p>
+        {loadingErr}
         <input
           onChange={this.handleChange}
           required
