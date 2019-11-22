@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 // const publicPath = path.join(__dirname, '..', 'public');
 // app.use(express.static(publicPath));
-app.use(express.static('./node_modules'));
+app.use(express.static('./../node_modules'));
 app.get('/hello', (req, res) => {
     res.send('hello');
     //res.sendFile(path.resolve(__dirname, 'client', 'build', 'bundle.js'));
