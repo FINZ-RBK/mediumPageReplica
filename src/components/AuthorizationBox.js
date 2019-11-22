@@ -95,7 +95,7 @@ export default function CustomizedDialogs() {
                 }}
               >
                 <div>
-                  <SignUpForm></SignUpForm>
+                  <SignUpForm handleClose={handleClose.bind(this)}></SignUpForm>
                 </div>
               </Col>
               <Col
