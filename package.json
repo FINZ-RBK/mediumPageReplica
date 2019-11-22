@@ -42,7 +42,7 @@
     "test": "react-scripts test --env=node",
     "eject": "react-scripts eject",
     "start": "node server/server.js",
-    "server": "node server/server.js"
+    "server": "nodemon server/server.js"
   },
   "eslintConfig": {
     "extends": "react-app"
