@@ -39,11 +39,10 @@
   },
   "scripts": {
     "dev": "concurrently \"npm run server\" \"react-scripts start\"",
-   // "start": "concurrently \"cd server npm run server\" \"react-scripts start\"",
     "build": "react-scripts build",
     "test": "react-scripts test --env=node",
     "eject": "react-scripts eject",
-    "start": "node server/server.js",
+    "start": "concurrently \"cd server npm run server\" \"react-scripts start\"",
     "server": "nodemon server/server.js",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build"
   },
@@ -69,6 +68,5 @@
     "enzyme-adapter-react-16": "^1.15.1",
     "jest-mock-axios": "^3.1.2",
     "nodemon": "^1.19.4"
-  },
-  "proxy": "http://localhost:3004"
+  }
 }
