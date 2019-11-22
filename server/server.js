@@ -16,8 +16,8 @@ const ACCESS_TOKEN_SECRET =
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-const publicPath = path.join(__dirname, '..', 'public');
-app.use(express.static(publicPath));
+// const publicPath = path.join(__dirname, '..', 'public');
+// app.use(express.static(publicPath));
 
 
 app.get("/articles/getFeatured", function (req, res) {
@@ -169,9 +169,14 @@ app.get("/user", (req, res) => {
         res.status(401).json({ msg: "Token is not valid" });
     }
 });
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(publicPath, 'index.html'));
-// });
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('../build'));
+    const path = require('path');
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
+    })
+
+}
 app.listen(port, () => {
     console.log("connected on port" + port);
 });
