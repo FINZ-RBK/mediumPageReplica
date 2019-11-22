@@ -2,6 +2,8 @@
   "name": "medium-page-replica",
   "version": "0.1.0",
   "private": true,
+  "main": "server/server.js",
+  "homepage": "https://medium-featured-replica.herokuapp.com/",
   "dependencies": {
     "@material-ui/core": "^4.6.1",
     "@material-ui/icons": "^4.5.1",
@@ -44,7 +46,7 @@
     "eject": "react-scripts eject",
     "start": "concurrently \"cd server npm run server\" \"react-scripts start\"",
     "server": "nodemon server/server.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && react-scripts build"
   },
   "eslintConfig": {
     "extends": "react-app"
