@@ -2,12 +2,12 @@ const mongoose = require("../node_modules/mongoose/index.js");
 var User = require("./models/User").User;
 var Article = require("./models/Article").Article;
 var Category = require("./models/Category").Category;
-const config = require ("../config")
+const config = require("../config")
 // var uri ="mongodb+srv://fatoom:fatoom@cluster0-lv76n.mongodb.net/mediunDB?retryWrites=true&w=majority"
 
 mongoose
   .connect(config.mongoURI, {
-      // .connect(config.mongoURI, {
+    // .connect(config.mongoURI, {
     useNewUrlParser: true,
     useCreateIndex: true,
     dbName: "mediunDB"
@@ -42,10 +42,9 @@ const getUsers = function (callback) {
 };
 
 const getFeatured = function (callback) {
-  Article.find({ clapsNumber: { $gte: 100 } })
-    .limit(1)
+  Article.find({ id: 35361 })
     .select(
-      "title subTitle pic createdAt readingTime categoryId clapsNumber authorId"
+      "id title subTitle pic createdAt readingTime categoryId clapsNumber authorId"
     )
     .exec(function (err, article) {
       if (err) {
