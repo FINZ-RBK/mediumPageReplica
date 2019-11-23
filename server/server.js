@@ -78,7 +78,7 @@ app.get("/articles/get10Articals", (req, res) => {
 
   db.Article.find({ id: { $gte: req.query.id } })
     .sort({ id: 1 })
-    .limit(3)
+    .limit(5)
     .then(data => {
       res.send(data);
     });
@@ -168,12 +168,11 @@ app.get("/users/user", (req, res) => {
     res.status(401).json({ msg: "Token is not valid" });
   }
 });
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.resolve(__dirname, '..', 'build')));
-    app.get('*', (req, res) => {
-        res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
-    })
-
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.resolve(__dirname, "..", "build")));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "..", "build", "index.html"));
+  });
 }
 app.listen(port, () => {
   console.log("connected on port" + port);
