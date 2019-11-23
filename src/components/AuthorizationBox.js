@@ -69,8 +69,8 @@ export default function CustomizedDialogs() {
           borderRadius: "8px",
           fontSize: "12px",
           position: "absolute",
-          top: "4.5%",
-          left: "73%",
+          top: "3.8%",
+          left: "69%",
           zIndex: "1000",
         }}
         onClick={handleClickOpen}
