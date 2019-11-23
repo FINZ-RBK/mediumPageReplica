@@ -69,7 +69,7 @@ export default function CustomizedDialogs() {
           borderRadius: "8px",
           fontSize: "12px",
           position: "absolute",
-          top: "10%",
+          top: "4.5%",
           left: "73%",
           zIndex: "1000",
         }}
