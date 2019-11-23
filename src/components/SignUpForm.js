@@ -52,7 +52,6 @@ class Form extends React.Component {
         that.setState({ show: false });
         // that.props.handleClose();
         that.handleResponse(res);
-        that.refreshPage();
         return res;
       })
       .catch(err => {
@@ -76,7 +75,6 @@ class Form extends React.Component {
         console.log("response: ", res);
         that.setState({ show: false });
         console.log(res.data.errors);
-        that.refreshPage();
         this.handleResponse(res);
         // return res;
       })
@@ -94,6 +92,7 @@ class Form extends React.Component {
       //that.props.handleClose();
       this.setState({ error: response.data.errors[0] });
     } else if (response.status === 200) {
+      this.refreshPage();
       console.log("Success");
     }
   }
@@ -183,75 +182,75 @@ class Form extends React.Component {
         </p>
       </div>
     ) : (
-      <div>
-        <h4
-          style={{
-            fontSize: "28px",
-            fontFamily: "medium-marketing-display-font",
-            color: "rgb(0,0,0,0.84)",
-            padding: "8px"
-          }}
-        >
-          Welcome back.
+        <div>
+          <h4
+            style={{
+              fontSize: "28px",
+              fontFamily: "medium-marketing-display-font",
+              color: "rgb(0,0,0,0.84)",
+              padding: "8px"
+            }}
+          >
+            Welcome back.
         </h4>
-        <p
-          style={{
-            fontFamily:
-              " medium-content-sans-serif-font,Lucida Grande,Lucida Sans Unicode,Lucida Sans",
-            fontSize: "18px",
-            color: "rgb(0,0,0,0.54)"
-          }}
-        >
-          Sign in to get personalized story
+          <p
+            style={{
+              fontFamily:
+                " medium-content-sans-serif-font,Lucida Grande,Lucida Sans Unicode,Lucida Sans",
+              fontSize: "18px",
+              color: "rgb(0,0,0,0.54)"
+            }}
+          >
+            Sign in to get personalized story
           <br />
-          recommendations, follow authors and topics you <br /> love, and
-          interact with stories.
+            recommendations, follow authors and topics you <br /> love, and
+            interact with stories.
         </p>
-        {loadingErr}
-        <input
-          onChange={this.handleChange}
-          required
-          type="email"
-          id="semail"
-          name="email"
-          placeholder="Email address"
-        ></input>
-        <input
-          onChange={this.handleChange}
-          required
-          type="password"
-          id="spassword"
-          name="password"
-          placeholder="Password"
-        ></input>
-        <input type="submit" onClick={this.signinSubmit}></input>
-        <p>
-          No account?
+          {loadingErr}
+          <input
+            onChange={this.handleChange}
+            required
+            type="email"
+            id="semail"
+            name="email"
+            placeholder="Email address"
+          ></input>
+          <input
+            onChange={this.handleChange}
+            required
+            type="password"
+            id="spassword"
+            name="password"
+            placeholder="Password"
+          ></input>
+          <input type="submit" onClick={this.signinSubmit}></input>
+          <p>
+            No account?
           <span className="signin" onClick={this.handleClickSignIn}>
-            Create one!
+              Create one!
           </span>
-        </p>
-        <p className="summary">
-          To make Medium work, we log user data and share it with service
-          providers. Click “Sign In” above to accept Medium’s
+          </p>
+          <p className="summary">
+            To make Medium work, we log user data and share it with service
+            providers. Click “Sign In” above to accept Medium’s
           <a
-            target="blank"
-            rel="noopener"
-            href="https://medium.com/policy/medium-terms-of-service-9db0094a1e0f"
-          >
-            Terms of Service
+              target="blank"
+              rel="noopener"
+              href="https://medium.com/policy/medium-terms-of-service-9db0094a1e0f"
+            >
+              Terms of Service
           </a>
-          &amp;
+            &amp;
           <a
-            target="blank"
-            rel="noopener"
-            href="https://medium.com/policy/medium-privacy-policy-f03bf92035c9"
-          >
-            Privacy Policy.
+              target="blank"
+              rel="noopener"
+              href="https://medium.com/policy/medium-privacy-policy-f03bf92035c9"
+            >
+              Privacy Policy.
           </a>
-        </p>
-      </div>
-    );
+          </p>
+        </div>
+      );
   }
 }
 export default Form;
