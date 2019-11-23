@@ -29,7 +29,7 @@ class FeaturedArticle extends React.Component {
                             <Image src={(this.article.pic) ? this.article.pic : ""} width="100%"></Image>
                         </Row>
                         <Row style={{ marginTop: 11 + "px" }}>
-                            <h1 style={{ fontSize: 3 + "vw" }}><a href={"https://meduim-replica.herokuapp.com/?id=" + this.article.id}></a>{(this.article.title) ? this.article.title : ""}</h1>
+                            <h1 style={{ fontSize: 3 + "vw" }}><a href={"https://meduim-replica.herokuapp.com/?id=" + this.article.id}>{(this.article.title) ? this.article.title : ""}</a></h1>
                         </Row>
                         <Row>
                             <h6 style={{ color: "#999" }}>{(this.article.subTitle) ? this.article.subTitle : ""}</h6>
