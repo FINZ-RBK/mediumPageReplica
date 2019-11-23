@@ -11,6 +11,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import SignUpForm from "./SignUpForm";
+import { Fixed } from "@primer/components";
 const styles = theme => ({
   root: {
     margin: 0,
@@ -60,9 +61,25 @@ export default function CustomizedDialogs() {
 
   return (
     <div>
-      <Button variant="outlined" color="secondary" onClick={handleClickOpen}>
+      <button
+        style={{
+          backgroundColor: "white",
+          color: "rgba(3, 168, 124, 1)",
+          border: "1px solid rgba(3, 168, 124, 1)",
+          borderRadius: "8px",
+          fontSize: "12px",
+          position: "absolute",
+          top: "10%",
+          left: "73%",
+          zIndex: "1000",
+        }}
+        onClick={handleClickOpen}
+      >
+        Get started
+            </button>
+      {/* <Button variant="outlined" color="secondary" onClick={handleClickOpen}>
         Login
-      </Button>
+      </Button> */}
       <Dialog
         padding="0px"
         maxWidth="40%"
@@ -114,6 +131,6 @@ export default function CustomizedDialogs() {
           </Container>
         </DialogContent>
       </Dialog>
-    </div>
+    </div >
   );
 }
