@@ -15,6 +15,7 @@ const auth = require("./auth");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+var accessTokenSaved = ""
 // const publicPath = path.join(__dirname, '..', 'public');
 // app.use(express.static(publicPath));
 // app.use(express.static('./../node_modules'));
@@ -93,7 +94,7 @@ app.post(
         const errors = validationResult(req);
         const accessToken = auth.generateAccessToken(req.body);
         res.cookie(config.HEADER_AUTH, accessToken);
-
+        accessTokenSaved = accessToken;
         if (!errors.isEmpty()) {
             return res.status(203).json({ errors: errors.array() });
         }
@@ -131,6 +132,7 @@ app.post(
         }
         var accessToken = auth.generateAccessToken(req.body);
         res.cookie(config.HEADER_AUTH, accessToken);
+        accessTokenSaved = accessToken
         db.getUser(req.body, async (err, user) => {
             if (err) {
                 return res.status(201).send({ errors: ["not found"] });
@@ -152,8 +154,8 @@ app.post(
 );
 
 app.get("/users/user", (req, res) => {
-
-    var token = req.headers[config.HEADER_AUTH];
+    // var token = req.headers[config.HEADER_AUTH];
+    token = accessTokenSaved;
     console.log(token);
     if (token == null) return res.sendStatus(401);
     try {
