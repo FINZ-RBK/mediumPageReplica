@@ -57,16 +57,17 @@ class TopicList extends React.Component {
           id: that.state.lastItemID || 0
         }
       })
-      .then(function (response) {
+      .then(function(response) {
         console.log(response.data[response.data.length - 1]["id"], "befor");
         that.lastItemID = response.data[response.data.length - 1]["id"];
+        var newData = response.data.shift(1, 1);
         that.setState({
           data: [...that.state.data, ...response.data],
           lastItemID: response.data[response.data.length - 1]["id"]
         });
         console.log(response.data[response.data.length - 1]["id"], "after");
       })
-      .catch(function (error) {
+      .catch(function(error) {
         console.log(error);
       });
   }
@@ -89,10 +90,10 @@ class TopicList extends React.Component {
     return (
       <Container>
         <UL className="latest">
-          <li></li>
           <Container style={{ fontWeight: "bold" }}>LATEST</Container>
           <hr />
           {listItems}
+          <li></li>
         </UL>
       </Container>
     );
