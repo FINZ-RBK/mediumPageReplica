@@ -29,7 +29,7 @@ class App extends React.Component {
   render() {
     return (
       <Container>
-        {/* <AuthorizationBox></AuthorizationBox> */}
+        <AuthorizationBox></AuthorizationBox>
         {/* Nav Bar */}
         <Row>
           <Col><iframe
