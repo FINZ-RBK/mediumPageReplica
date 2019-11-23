@@ -11,8 +11,15 @@ class FeaturedArticle extends React.Component {
         super(props);
         this.article = props.article.article;
         this.author = props.article.articleAuthor;
+        this.categroy = props.article.articleCat;
     }
     render() {
+        var createdDate;
+        if (this.article.createdAt) {
+            var cDate = (new Date(this.article.createdAt)).toDateString().split(" ");
+            createdDate = cDate[1] + " " + cDate[2];
+        }
+        console.log(createdDate);
         return (
             <Container >
                 <Row>
@@ -43,10 +50,10 @@ class FeaturedArticle extends React.Component {
                             </Col>
                             <Col md={{ span: 11, order: 11 }}>
                                 <Row>
-                                    <p style={{ fontSize: 12 + "px", marginBottom: 0 }}> {(this.author.name) ? this.author.name : ""} in Human Parts</p>
+                                    <p style={{ fontSize: 12 + "px", marginBottom: 0 }}> {(this.author.name) ? this.author.name : ""} in  {(this.categroy.name) ? this.categroy.name : ""}</p>
                                 </Row>
                                 <Row>
-                                    <p style={{ fontSize: 12 + "px" }}> Nov 14 · {(this.article.readingTime) ? this.article.readingTime : ""} min read <Octicon icon={Star} size="small" verticalAlign="middle"></Octicon></p>
+                                    <p style={{ fontSize: 12 + "px" }}> {createdDate} · {(this.article.readingTime) ? this.article.readingTime : ""} min read <Octicon icon={Star} size="small" verticalAlign="middle"></Octicon></p>
                                 </Row>
                             </Col>
                         </Row>

@@ -143,6 +143,11 @@ class Topic extends React.Component {
     });
   }
   render() {
+    var createdDate = "";
+    if (this.state.data["createdAt"]) {
+      var cDate = (new Date(this.state.data["createdAt"])).toDateString().split(" ");
+      createdDate = cDate[1] + " " + cDate[2];
+    }
     return (
       <Container>
         <TopicText>
@@ -169,11 +174,11 @@ class Topic extends React.Component {
               {}
               <A style={{ color: "#8f8c83" }}>
                 {" "}
-                {new Date(this.state.data["createdAt"]).toDateString()}{" "}
+                {createdDate}{" "}
               </A>{" "}
 
               <A2 style={{ color: "#8f8c83" }}>
-                {"  - "} {this.state.data["readingTime"] + "  min read"}
+                -  {this.state.data["readingTime"] + "  min read"}
               </A2>
             </Flex>
           </EmptyDiv>

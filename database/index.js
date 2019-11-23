@@ -50,14 +50,18 @@ const getFeatured = function (callback) {
       if (err) {
         callback(err, null);
       } else {
-        var articleAuthor;
         getAuthor(User, article[0].authorId, function (err, author) {
           if (err) {
             console.log(err);
           } else {
-            var feauredArticle = { article: article[0], articleAuthor: author };
-            // console.log(feauredArticle);
-            callback(null, feauredArticle);
+            console.log("********************");
+            console.log(article[0].categoryId);
+            getCategory(Category, article[0].categoryId, function (err, categroy) {
+              var feauredArticle = { article: article[0], articleAuthor: author, articleCat: categroy };
+              console.log(feauredArticle);
+              callback(null, feauredArticle);
+            });
+
           }
         });
       }
@@ -73,8 +77,9 @@ const getAuthor = function (model, authorId, callback) {
 
 const getCategory = function (model, categoryId, callback) {
   model.findOne({ id: categoryId }).exec(function (err, category) {
-    if (err) throw err;
-    callback(category);
+    if (err) callback(err, null);
+    console.log(category);
+    callback(null, category);
   });
 };
 
