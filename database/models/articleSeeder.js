@@ -4,7 +4,7 @@ var Article = require( './Article').Article;
 var User = require( './User').User;
 var Category = require( './Category').Category;
 
-// select the ids from the database for hte users .
+// select the ids from the database for the users .
 const structureArticles=  function() {
     User.find({}).
     exec(function (err, users) {
@@ -59,8 +59,6 @@ const structureArticles=  function() {
                                     console.log('article saved!');
                                 }
                             });
-
-                        //console.log();
 
                     }
                     
