@@ -1,8 +1,9 @@
+
 var mongoose = require("mongoose");
 //GET the Schema constructor
 
 var Schema = mongoose.Schema;
-
+//article schema
 const articleSchema = new Schema({
     id: { type: Number, unique: true },
     authorId: { type: Number},
@@ -18,7 +19,9 @@ const articleSchema = new Schema({
     tags: { type: Array }
   });
 
+//ِArticle model 
 const Article = mongoose.model('Article', articleSchema);
 
+//Export to use elsewhere 
 module.exports.Article = Article;
 
