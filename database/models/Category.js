@@ -4,11 +4,13 @@ var mongoose = require("mongoose");
 
 var Schema = mongoose.Schema;
 
+//Category Schema
 const categorySchema = new Schema({
     id: { type: Number, unique: true },
     name: {type: String}
   });
   
-  
-  const Category = mongoose.model('Category', categorySchema);
-  module.exports.Category = Category;
+//Category model
+const Category = mongoose.model('Category', categorySchema);
+//export 
+module.exports.Category = Category;
