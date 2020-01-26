@@ -10,9 +10,7 @@ var Category = require( './Category').Category;
        category.save(err =>{
         if(err) {
             console.log(err);
-        } else{
-            console.log('Hi');
-        }
+        } 
       }
 
       );
