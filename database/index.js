@@ -1,10 +1,13 @@
+//Database class to deal with all models and export them
 const mongoose = require('../node_modules/mongoose/index.js');
 var User =  require('./models/User');
 var  Article = require('./models/Article');
 var Category = require('./models/Category');
 
+//Database uri
 const uri = "mongodb+srv://fatoom:fatoom@cluster0-hft43.mongodb.net/mediunDB?retryWrites=true&w=majority";
 
+//Make connection to Database
 mongoose
   .connect(uri, {
     useNewUrlParser: true,
@@ -19,17 +22,7 @@ connection.once('open', () => {
   console.log('MongoDB database connection established successfully');
 });
 
-//need to be refactored
-const selectAll = function(obj, id, callback) {
-  obj.find({ id: id }, function(err, items) {
-    if (err) {
-      callback(err, null);
-    } else {
-      callback(null, items);
-    }
-  });
-};
-
+//Function to get all users
 const getUsers =  function(callback) {
   User.find({}).
 exec(function (err, user) {
@@ -38,6 +31,7 @@ exec(function (err, user) {
 })
 }; 
 
+//Function to get featured articles
 const getFeatured= function(callback){
                       Article.find({}).
                       sort(['clapsNumber', 1]).
@@ -49,6 +43,7 @@ const getFeatured= function(callback){
 
                     }
 
+//Function to get author by id
 const getAuthor = function(model, authorId, callback) {
   model.findOne({ id: authorId }).exec(function(err, user) {
     if (err) throw err;
@@ -56,6 +51,7 @@ const getAuthor = function(model, authorId, callback) {
   });
 };
 
+//Function to get Category by id
 const getCategory = function(model, categoryId, callback) {
   model.findOne({ id: categoryId }).exec(function(err, category) {
     if (err) throw err;
@@ -63,6 +59,7 @@ const getCategory = function(model, categoryId, callback) {
   });
 };
 
+//Function to get latest article 
 const getLatest = function(callback){
                   Article.find({}).
                   sort(['createdAt', 1]).
@@ -73,7 +70,7 @@ const getLatest = function(callback){
                   });
                 }
 
-
+//export models to use them in other classes
 module.exports.getAuthor = getAuthor;
 module.exports.selectAll = selectAll;
 module.exports.getUsers = getUsers;
