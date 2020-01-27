@@ -37,4 +37,8 @@ Create a Replica of the featured pics page of Medium website that links to a rep
 - install npm packages using (npm install).
 - start the server.
 
+<<<<<<< HEAD
 Continue watching our repos for upcomings
+=======
+Continue watching our repos for upcomings
+>>>>>>> ab4be3a62f4e614356dd62df6897789f49ca827c
