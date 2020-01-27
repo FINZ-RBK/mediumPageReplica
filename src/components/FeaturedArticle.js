@@ -7,14 +7,16 @@ import Image from 'react-bootstrap/Image';
 import Octicon, { Star } from '@primer/octicons-react'
 
 class FeaturedArticle extends React.Component {
+
     constructor(props) {
         super(props);
         this.article = props.article.article;
         this.author = props.article.articleAuthor;
     }
+
     render() {
         return (
-            <Container >
+            <Container>
                 <Row>
                     <Col md={{ span: 4, order: 12 }} sm={{ span: 12, order: 0 }} xs={{ span: 12, order: 0 }}>
                         <Row style={{ marginLeft: 30 + "px" }}  >
@@ -53,4 +55,5 @@ class FeaturedArticle extends React.Component {
         );
     }
 }
+
 export default FeaturedArticle;

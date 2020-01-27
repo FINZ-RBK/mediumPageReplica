@@ -55,17 +55,21 @@ input[type="submit"]:hover {
   background-color: #f2f2f2;
   padding: 20px;
 }
+
 .signin {
   color: rgb(2, 201, 148);
 }
+
 .signin:hover {
   color: rgb(2, 175, 129);
   cursor: pointer;
   text-decoration: underline;
 }
+
 a {
   color: rgb(2, 201, 148);
 }
+
 a:hover {
   color: rgb(2, 175, 129);
   cursor: pointer;

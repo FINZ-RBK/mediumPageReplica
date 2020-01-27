@@ -3,11 +3,9 @@ var User = require("./models/User").User;
 var Article = require("./models/Article").Article;
 var Category = require("./models/Category").Category;
 const config = require ("../config")
-// var uri ="mongodb+srv://fatoom:fatoom@cluster0-lv76n.mongodb.net/mediunDB?retryWrites=true&w=majority"
 
 mongoose
   .connect(config.mongoURI, {
-      // .connect(config.mongoURI, {
     useNewUrlParser: true,
     useCreateIndex: true,
     dbName: "mediunDB"

@@ -12,6 +12,7 @@ it('renders without crashing', () => {
   ReactDOM.render(<App />, div);
   ReactDOM.unmountComponentAtNode(div);
 });
+
 xdescribe('App', () => {
 
   test('snapshot renders', () => {
@@ -19,14 +20,17 @@ xdescribe('App', () => {
     let tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
+
   it('renders the inner FeaturedArticle', () => {
     const wrapper = mount(<App />);
     expect(wrapper.find(FeaturedArticle).length).toEqual(1);
   });
+
   it('renders the inner TopicList', () => {
     const wrapper = mount(<App />);
     expect(wrapper.find(TopicList).length).toEqual(1);
   });
+
   // integration test
   it('passes props to the featrued Article', () => {
     var promise = new Promise((resolve, reject) => {
@@ -94,13 +98,4 @@ xdescribe('App', () => {
       axios.get = jest.fn(() => promise);
 
     });
-    // it('increments the counter', () => {
-    //   const wrapper = mount(<App />);
-    //   wrapper
-    //     .find('button')
-    //     .at(0)
-    //     .simulate('click');
-    //   const counterWrapper = wrapper.find(Counter);
-    //   expect(counterWrapper.find('p').text()).toBe('1');
-    // });
-  // });
+    
