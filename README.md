@@ -1,4 +1,4 @@
-# Mediun
+# Medium
 
 https://medium-featured-replica.herokuapp.com/
 <!-- 
